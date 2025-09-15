@@ -14,10 +14,6 @@ document.getElementById('naming-title').textContent = STRINGS.partner.namingTitl
 document.getElementById('naming-grid').innerHTML = STRINGS.partner.naming.map(n =>
     `<div class="naming-card"><div class="naming-amount">${n.amount}</div><div>${n.label}</div></div>`
 ).join('');
-document.getElementById('collaboration-title').textContent = STRINGS.partner.collaborationTitle;
-document.getElementById('collaboration-grid').innerHTML = STRINGS.partner.collaborations.map(c =>
-    `<div class="collaboration-card"><h3>${c.title}</h3><p>${c.text}</p></div>`
-).join('');
 document.getElementById('download-title').textContent = STRINGS.partner.downloadTitle;
 document.getElementById('download-btn').textContent = STRINGS.partner.downloadBtn;
 

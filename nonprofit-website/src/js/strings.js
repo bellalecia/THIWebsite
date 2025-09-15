@@ -115,7 +115,7 @@ partner: {
         { title: "Nonprofit Organizations", text: "Collaborate with us to expand our reach and impact." },
         { title: "Community Leaders", text: "Lead initiatives and inspire change in your community." }
     ],
-    downloadTitle: "Download Our Case Statement",
+    downloadTitle: "Resources & Forms",
     downloadBtn: "Download PDF"
     }
 };
