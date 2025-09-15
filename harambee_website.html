@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Harambee Initiative - Website Mockups</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f0f0f0;
+            padding: 2rem;
+        }
+
+        .mockup-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .page-mockup {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .page-header {
+            background: #000;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .browser-bar {
+            background: #e0e0e0;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .browser-dots {
+            display: flex;
+            gap: 0.3rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .red { background: #ff5f57; }
+        .yellow { background: #ffbd2e; }
+        .green { background: #28ca42; }
+
+        .url-bar {
+            background: white;
+            padding: 0.3rem 1rem;
+            border-radius: 15px;
+            margin-left: 1rem;
+            flex: 1;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Navigation Styles */
+        .nav {
+            background: rgba(0, 0, 0, 0.95);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #D4AF37;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: #D4AF37;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #000;
+        }
+
+        .logo-text {
+            color: #D4AF37;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: #D4AF37;
+            color: #000;
+        }
+
+        /* HOME PAGE STYLES */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(212,175,55,0.3));
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero-stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20% 30%, #D4AF37, transparent),
+                radial-gradient(2px 2px at 40% 70%, #FFD700, transparent),
+                radial-gradient(1px 1px at 90% 40%, #D4AF37, transparent),
+                radial-gradient(1px 1px at 60% 10%, #FFD700, transparent);
+            animation: sparkle 3s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #D4AF37);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #D4AF37, #FFD700);
+            color: #000;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .mission-section {
+            padding: 4rem 2rem;
+            background: white;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #000;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: #D4AF37;
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .mission-card {
+            background: #000;
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid #D4AF37;
+        }
+
+        .mission-card h3 {
+            color: #D4AF37;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .stats-section {
+            background: linear-gradient(135deg, #000, #1a1a1a);
+            color: white;
+            padding: 4rem 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            border: 1px solid #D4AF37;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            color: #D4AF37;
+            font-weight: bold;
+        }
+
+        .components-section {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .component-card {
+            background: linear-gradient(145deg, #f8f8f8, #e8e8e8);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-left: 5px solid #D4AF37;
+        }
+
+        .component-cost {
+            color: #D4AF37;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        /* ABOUT PAGE STYLES */
+        .about-hero {
+            background: white;
+            padding: 6rem 2rem 3rem;
+            text-align: center;
+        }
+
+        .about-intro {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+
+        .board-section {
+            background: #f8f8f8;
+            padding: 4rem 2rem;
+        }
+
+        .board-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .board-member {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-top: 4px solid #D4AF37;
+        }
+
+        .member-name {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #000;
+        }
+
+        .member-title {
+            color: #D4AF37;
+            font-weight: bold;
+        }
+
+        .case-statement-section {
+            background: #000;
+            color: white;
+            padding: 4rem 2rem;
+        }
+
+        .budget-breakdown {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 3rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .budget-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            margin: 1rem 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid #D4AF37;
+        }
+
+        .budget-bar {
+            width: 200px;
+            height: 10px;
+            background: #333;
+            border-radius: 5px;
+            margin: 0.5rem 0;
+            overflow: hidden;
+        }
+
+        .budget-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #D4AF37, #FFD700);
+        }
+
+        .testimonials-section {
+            background: white;
+            padding: 4rem 2rem;
+        }
+
+        .testimonial-card {
+            background: #000;
+            color: white;
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            color: #D4AF37;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* GET INVOLVED PAGE STYLES */
+        .programs-hero {
+            background: linear-gradient(135deg, #000, #1a1a1a);
+            color: white;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .program-card {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid #D4AF37;
+        }
+
+        .program-title {
+            color: #D4AF37;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .video-section {
+            background: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .video-placeholder {
+            background: #000;
+            height: 300px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #D4AF37;
+            font-size: 1.2rem;
+            margin: 2rem auto;
+            max-width: 600px;
+        }
+
+        .partner-logos {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .partner-logo {
+            width: 100px;
+            height: 60px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #D4AF37;
+        }
+
+        /* PARTNER WITH US PAGE STYLES */
+        .donate-hero {
+            background: linear-gradient(135deg, #D4AF37, #FFD700);
+            color: #000;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+        }
+
+        .donation-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+            padding: 0 2rem;
+        }
+
+        .donation-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-top: 4px solid #D4AF37;
+        }
+
+        .naming-opportunities {
+            background: #f8f8f8;
+            padding: 4rem 2rem;
+        }
+
+        .naming-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .naming-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .naming-amount {
+            color: #D4AF37;
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .collaboration-section {
+            background: #000;
+            color: white;
+            padding: 4rem 2rem;
+        }
+
+        .collaboration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .collaboration-card {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid #D4AF37;
+        }
+
+        .download-section {
+            background: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .download-btn {
+            background: #000;
+            color: white;
+            padding: 1rem 2rem;
+            border: 2px solid #D4AF37;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background: #D4AF37;
+            color: #000;
+        }
+
+        .mockup-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        .mockup-controls button {
+            background: #D4AF37;
+            color: #000;
+            border: none;
+            padding: 0.5rem 1rem;
+            margin: 0.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .page-content {
+            display: none;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        .footer {
+            background: #000;
+            color: white;
+            padding: 3rem 2rem 1rem;
+            border-top: 3px solid #D4AF37;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #D4AF37;
+            margin-bottom: 1rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="mockup-controls">
+        <div style="margin-bottom: 1rem; font-weight: bold;">Page Mockups:</div>
+        <button onclick="showPage('home')">Home</button>
+        <button onclick="showPage('about')">About</button>
+        <button onclick="showPage('get-involved')">Get Involved</button>
+        <button onclick="showPage('partner')">Partner with Us</button>
+    </div>
+
+    <div class="mockup-container">
+        <!-- HOME PAGE MOCKUP -->
+        <div id="home-mockup" class="page-mockup page-content active">
+            <div class="page-header">HOME PAGE - The Harambee Initiative</div>
+            <div class="browser-bar">
+                <div class="browser-dots">
+                    <div class="dot red"></div>
+                    <div class="dot yellow"></div>
+                    <div class="dot green"></div>
+                </div>
+                <div class="url-bar">https://harambeenow.org</div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="nav">
+                <div class="logo">
+                    <div class="logo-icon">🏠</div>
+                    <div class="logo-text">THE HARAMBEE INITIATIVE</div>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Get Involved</a></li>
+                    <li><a href="#">Partner with Us</a></li>
+                </ul>
+            </nav>
+
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <div class="hero-stars"></div>
+                <div class="hero-content">
+                    <h1 class="hero-title">TOGETHER WE SOAR</h1>
+                    <p class="hero-subtitle">A Safe Gathering Space for Physical, Mental, Emotional, and Spiritual Well-Being</p>
+                    <button class="cta-button">Learn More</button>
+                </div>
+            </section>
+
+            <!-- Mission Section -->
+            <section class="mission-section">
+                <h2 class="section-title">Our Mission</h2>
+                <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto 2rem;">The Harambee Initiative is a place where holistic support meets tangible action in a unified community. We provide programs for youth and adult enrichment, senior services, education, economic development, and food insecurity.</p>
+                
+                <div class="mission-grid">
+                    <div class="mission-card">
+                        <h3>Community Impact</h3>
+                        <p>Serving DuPage County with comprehensive programs addressing food insecurity, childcare, education, and senior services.</p>
+                    </div>
+                    <div class="mission-card">
+                        <h3>Holistic Approach</h3>
+                        <p>Addressing physical, mental, emotional, and spiritual well-being in one unified space.</p>
+                    </div>
+                    <div class="mission-card">
+                        <h3>Together We Rise</h3>
+                        <p>Building the "Beloved Community" that Dr. Martin Luther King Jr. envisioned through collaborative action.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Impact Stats -->
+            <section class="stats-section">
+                <h2 class="section-title" style="color: #D4AF37; text-align: center; margin-bottom: 2rem;">Our Impact Goals</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">50,000+</div>
+                        <div>Families Facing Food Insecurity</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">$10M</div>
+                        <div>Campaign Goal</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">23,000</div>
+                        <div>Children Under 5 Without Childcare Access</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">33%</div>
+                        <div>Adults Lacking Digital Skills</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Building Components -->
+            <section class="components-section">
+                <h2 class="section-title" style="text-align: center;">Building Components</h2>
+                <div class="components-grid">
+                    <div class="component-card">
+                        <h3>The Building</h3>
+                        <p>Main community hub housing all programs and services</p>
+                        <div class="component-cost">$10M</div>
+                    </div>
+                    <div class="component-card">
+                        <h3>Multipurpose Space</h3>
+                        <p>Flexible community gathering and event space</p>
+                        <div class="component-cost">$3M</div>
+                    </div>
+                    <div class="component-card">
+                        <h3>Early Learning Center</h3>
+                        <p>Quality preschool programs for early learners</p>
+                        <div class="component-cost">$3M</div>
+                    </div>
+                    <div class="component-card">
+                        <h3>Food Pantry Space</h3>
+                        <p>Combating food insecurity in our community</p>
+                        <div class="component-cost">$2M</div>
+                    </div>
+                    <div class="component-card">
+                        <h3>Glass Atrium</h3>
+                        <p>Beautiful welcoming entrance and gathering space</p>
+                        <div class="component-cost">$1.5M</div>
+                    </div>
+                    <div class="component-card">
+                        <h3>Rooftop Garden</h3>
+                        <p>Community garden promoting nutrition and sustainability</p>
+                        <div class="component-cost">$1M</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>Contact Us</h3>
+                        <p>admin@harambeenow.org</p>
+                        <p>(630) 384-9070</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <p><a href="#">Donate Now</a></p>
+                        <p><a href="#">Volunteer</a></p>
+                        <p><a href="#">Programs</a></p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Follow Us</h3>
+                        <p>Facebook | Instagram | Twitter</p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 The Harambee Initiative, Inc. | Tax ID: 99-0898227</p>
+                </div>
+            </footer>
+        </div>
+
+        <!-- ABOUT PAGE MOCKUP -->
+        <div id="about-mockup" class="page-mockup page-content">
+            <div class="page-header">ABOUT PAGE - The Harambee Initiative</div>
+            <div class="browser-bar">
+                <div class="browser-dots">
+                    <div class="dot red"></div>
+                    <div class="dot yellow"></div>
+                    <div class="dot green"></div>
+                </div>
+                <div class="url-bar">https://harambeenow.org/about</div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="nav">
+                <div class="logo">
+                    <div class="logo-icon">🏠</div>
+                    <div class="logo-text">THE HARAMBEE INITIATIVE</div>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#" class="active">About</a></li>
+                    <li><a href="#">Get Involved</a></li>
+                    <li><a href="#">Partner with Us</a></li>
+                </ul>
+            </nav>
+
+            <!-- About Hero -->
+            <section class="about-hero">
+                <h1 style="font-size: 3rem; color: #000; margin-bottom: 2rem;">About The Harambee Initiative</h1>
+                <div class="about-intro">
+                    <p>Harambee, a Swahili word meaning "all pull together," represents our commitment to community unity and collective action. Founded on the critical work led by Reverend Conitras M. Houston Dickens, we are creating a transformative community hub in DuPage County.</p>
+                </div>
+            </section>
+
+            <!-- Board of Directors -->
+            <section class="board-section">
+                <h2 class="section-title" style="text-align: center; color: #000;">Board of Directors</h2>
+                <div class="board-grid">
+                    <div class="board-member">
+                        <div class="member-name">Rev. Conitras M. Houston Dickens</div>
+                        <div class="member-title">Board Chair</div>
+                    </div>
+                    <div class="board-member">
+                        <div class="member-name">Mr. Joseph Proctor</div>
+                        <div class="member-title">Vice Chair</div>
+                    </div>
+                    <div class="board-member">
+                        <div class="member-name">Dr. Connie Brown</div>
+                        <div class="member-title">Chief Financial Officer</div>
+                    </div>
+                    <div class="board-member">
+                        <div class="member-name">Mrs. Marcia Gordon Preston</div>
+                        <div class="member-title">Chief Development Officer</div>
+                    </div>
+                    <div class="board-member">
+                        <div class="member-name">Mrs. Nancy Covington-Beal</div>
+                        <div class="member-title">Board Member</div>
+                    </div>
+                    <div class="board-member">
+                        <div class="member-name">Rev. Raymondo Brady</div>
+                        <div class="member-title">Board Member</div>
+                    </div>
+                    <div class="board-member">
+                        <div class="member-name">Dr. Bill Carroll</div>
+                        <div class="member-title">Board Member</div>
+                    </div>
+                    <div class="board-member">
+                        <div class="member-name">Ms. KaTreena Cochren</div>
+                        <div class="member-title">Board Member</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Case Statement -->
+            <section class="case-statement-section">
+                <h2 class="section-title" style="color: #D4AF37; text-align: center;">Case Statement</h2>
+                <div class="budget-breakdown">
+                    <h3 style="color: #D4AF37; margin-bottom: 2rem; text-align: center;">Campaign Budget - $10M</h3>
+                    <div class="budget-item">
+                        <div>
+                            <strong>Construction Labor & Materials</strong>
+                            <div class="budget-bar">
+                                <div class="budget-fill" style="width: 100%;"></div>
+                            </div>
+                        </div>
+                        <span style="color: #D4AF37; font-weight: bold;">$1M</span>
+                    </div>
+                    <div class="budget-item">
+                        <div>
+                            <strong>Operations</strong>
+                            <div class="budget-bar">
+                                <div class="budget-fill" style="width: 9%;"></div>
+                            </div>
+                        </div>
+                        <span style="color: #D4AF37; font-weight: bold;">$500K</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials -->
+            <section class="testimonials-section">
+                <h2 class="section-title" style="text-align: center;">Community Testimonials</h2>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "Our family really appreciates all of the kind donations that you have given us. It really has made a big difference in our lives. Because of your donations, we are able to feed our seven children and granddaughter more effectively."
+                    </div>
+                    <div class="testimonial-author">- Crystal, R.E.A.C.H. Client</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "The West Suburban Chicago Chapter of Jack and Jill of America, Incorporated has fully enjoyed a great relationship with DuPage AME Church for over 8 years. We truly support and believe in the vision of The Harambee Initiative."
+                    </div>
+                    <div class="testimonial-author">- Nicole Fleming, Jack and Jill of America Inc.</div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>Contact Us</h3>
+                        <p>admin@harambeenow.org</p>
+                        <p>(630) 384-9070</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <p><a href="#">Donate Now</a></p>
+                        <p><a href="#">Volunteer</a></p>
+                        <p><a href="#">Programs</a></p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Follow Us</h3>
+                        <p>Facebook | Instagram | Twitter</p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 The Harambee Initiative, Inc. | Tax ID: 99-0898227</p>
+                </div>
+            </footer>
+        </div>
+
+        <!-- GET INVOLVED PAGE MOCKUP -->
+        <div id="get-involved-mockup" class="page-mockup page-content">
+            <div class="page-header">GET INVOLVED PAGE - The Harambee Initiative</div>
+            <div class="browser-bar">
+                <div class="browser-dots">
+                    <div class="dot red"></div>
+                    <div class="dot yellow"></div>
+                    <div class="dot green"></div>
+                </div>
+                <div class="url-bar">https://harambeenow.org/get-involved</div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="nav">
+                <div class="logo">
+                    <div class="logo-icon">🏠</div>
+                    <div class="logo-text">THE HARAMBEE INITIATIVE</div>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#" class="active">Get Involved</a></li>
+                    <li><a href="#">Partner with Us</a></li>
+                </ul>
+            </nav>
+
+            <!-- Programs Hero -->
+            <section class="programs-hero">
+                <h1 style="font-size: 3rem; margin-bottom: 2rem;">Get Involved</h1>
+                <p style="font-size: 1.3rem; max-width: 800px; margin: 0 auto;">Join us in building a transformative community hub that addresses critical needs across DuPage County.</p>
+            </section>
+
+            <!-- Programs List -->
+            <section style="background: linear-gradient(135deg, #000, #1a1a1a); color: white; padding: 4rem 2rem;">
+                <h2 style="color: #D4AF37; text-align: center; margin-bottom: 2rem; font-size: 2.5rem;">Our Programs</h2>
+                <div class="programs-grid">
+                    <div class="program-card">
+                        <div class="program-title">Food Security Programs</div>
+                        <p>Community garden and food pantry partnerships serving 50,000+ hungry families in DuPage County.</p>
+                    </div>
+                    <div class="program-card">
+                        <div class="program-title">Early Childhood Education</div>
+                        <p>Quality preschool programs for DuPage County's 46,000 children under five who lack access to childcare.</p>
+                    </div>
+                    <div class="program-card">
+                        <div class="program-title">Senior Enrichment</div>
+                        <p>Social connections and support services for isolated elderly community members.</p>
+                    </div>
+                    <div class="program-card">
+                        <div class="program-title">STEAM Education</div>
+                        <p>Digital skills training for 33% of workforce lacking tech skills for 92% of available jobs.</p>
+                    </div>
+                    <div class="program-card">
+                        <div class="program-title">Youth Development</div>
+                        <p>Before and after-school services providing safe environments for children and support for working families.</p>
+                    </div>
+                    <div class="program-card">
+                        <div class="program-title">Entrepreneur Support</div>
+                        <p>Storefront opportunities for local businesses to showcase products and stimulate economic growth.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Video Section -->
+            <section class="video-section">
+                <h2 class="section-title">Learn More About Our Impact</h2>
+                <div class="video-placeholder">
+                    🎥 Video from GwG Interest Meeting Coming Soon
+                </div>
+                <p style="text-align: center; max-width: 600px; margin: 2rem auto;">Watch our community interest meeting to learn more about how The Harambee Initiative will transform DuPage County.</p>
+            </section>
+
+            <!-- Partner Logos -->
+            <section style="background: #f8f8f8; padding: 4rem 2rem;">
+                <h2 class="section-title" style="color: #000;">Our Partners</h2>
+                <div class="partner-logos">
+                    <div class="partner-logo">
+                        <strong>High Impact Partner</strong>
+                    </div>
+                    <div class="partner-logo">
+                        <strong>R.E.A.C.H.</strong>
+                    </div>
+                    <div class="partner-logo">
+                        <strong>Jack & Jill</strong>
+                    </div>
+                    <div class="partner-logo">
+                        <strong>DuPage AME</strong>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interest Form Section -->
+            <section style="background: #000; color: white; padding: 4rem 2rem; text-align: center;">
+                <h2 style="color: #D4AF37; margin-bottom: 2rem; font-size: 2.5rem;">Join Our Community</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 3rem;">Sign up to stay informed about volunteer opportunities, events, and program updates.</p>
+                <div style="max-width: 500px; margin: 0 auto;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 3rem; border-radius: 15px; border: 2px solid #D4AF37;">
+                        <h3 style="color: #D4AF37; margin-bottom: 2rem;">Interest Form Sign Up</h3>
+                        <div style="text-align: left; margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem;">Name:</label>
+                            <input type="text" style="width: 100%; padding: 0.8rem; border-radius: 5px; border: none;">
+                        </div>
+                        <div style="text-align: left; margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem;">Email:</label>
+                            <input type="email" style="width: 100%; padding: 0.8rem; border-radius: 5px; border: none;">
+                        </div>
+                        <div style="text-align: left; margin-bottom: 2rem;">
+                            <label style="display: block; margin-bottom: 0.5rem;">Interest Areas:</label>
+                            <select style="width: 100%; padding: 0.8rem; border-radius: 5px; border: none;">
+                                <option>Volunteering</option>
+                                <option>Programming</option>
+                                <option>Donations</option>
+                                <option>All of the above</option>
+                            </select>
+                        </div>
+                        <button class="cta-button" style="width: 100%;">Submit</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>Contact Us</h3>
+                        <p>admin@harambeenow.org</p>
+                        <p>(630) 384-9070</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <p><a href="#">Donate Now</a></p>
+                        <p><a href="#">Volunteer</a></p>
+                        <p><a href="#">Programs</a></p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Follow Us</h3>
+                        <p>Facebook | Instagram | Twitter</p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 The Harambee Initiative, Inc. | Tax ID: 99-0898227</p>
+                </div>
+            </footer>
+        </div>
+
+        <!-- PARTNER WITH US PAGE MOCKUP -->
+        <div id="partner-mockup" class="page-mockup page-content">
+            <div class="page-header">PARTNER WITH US PAGE - The Harambee Initiative</div>
+            <div class="browser-bar">
+                <div class="browser-dots">
+                    <div class="dot red"></div>
+                    <div class="dot yellow"></div>
+                    <div class="dot green"></div>
+                </div>
+                <div class="url-bar">https://harambeenow.org/partner-with-us</div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="nav">
+                <div class="logo">
+                    <div class="logo-icon">🏠</div>
+                    <div class="logo-text">THE HARAMBEE INITIATIVE</div>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Get Involved</a></li>
+                    <li><a href="#" class="active">Partner with Us</a></li>
+                </ul>
+            </nav>
+
+            <!-- Donate Hero -->
+            <section class="donate-hero">
+                <h1 style="font-size: 3rem; margin-bottom: 2rem;">Partner with Us</h1>
+                <p style="font-size: 1.3rem; max-width: 800px; margin: 0 auto;">Join us in building a $10 million transformative community hub that will serve DuPage County for generations to come.</p>
+            </section>
+
+            <!-- Donation Options -->
+            <section style="background: white; padding: 4rem 2rem;">
+                <h2 class="section-title" style="color: #000;">Ways to Support</h2>
+                <div class="donation-options">
+                    <div class="donation-card">
+                        <h3 style="color: #D4AF37; margin-bottom: 1rem; font-size: 1.5rem;">One-Time Donation</h3>
+                        <p>Make a direct impact with a one-time contribution to our capital campaign.</p>
+                        <button class="cta-button" style="margin-top: 1rem; width: 100%;">Donate Now</button>
+                    </div>
+                    <div class="donation-card">
+                        <h3 style="color: #D4AF37; margin-bottom: 1rem; font-size: 1.5rem;">Monthly Giving</h3>
+                        <p>Provide sustained support through monthly contributions to our programs.</p>
+                        <button class="cta-button" style="margin-top: 1rem; width: 100%;">Set Up Monthly</button>
+                    </div>
+                    <div class="donation-card">
+                        <h3 style="color: #D4AF37; margin-bottom: 1rem; font-size: 1.5rem;">Corporate Partnership</h3>
+                        <p>Partner with us for community impact and corporate social responsibility.</p>
+                        <button class="cta-button" style="margin-top: 1rem; width: 100%;">Learn More</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Capital Campaign -->
+            <section style="background: #000; color: white; padding: 4rem 2rem;">
+                <h2 style="color: #D4AF37; text-align: center; margin-bottom: 2rem; font-size: 2.5rem;">Capital Campaign - $10M Goal</h2>
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <div style="background: rgba(212, 175, 55, 0.1); padding: 3rem; border-radius: 15px; margin: 2rem 0;">
+                        <div style="text-align: center; margin-bottom: 2rem;">
+                            <div style="font-size: 3rem; color: #D4AF37; font-weight: bold;">$10,000,000</div>
+                            <div style="font-size: 1.2rem;">Campaign Goal</div>
+                        </div>
+                        <div style="background: #333; height: 20px; border-radius: 10px; overflow: hidden; margin: 2rem 0;">
+                            <div style="background: linear-gradient(90deg, #D4AF37, #FFD700); height: 100%; width: 15%;"></div>
+                        </div>
+                        <p style="text-align: center; font-size: 1.1rem;">15% Raised - Help us reach our goal!</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Naming Opportunities -->
+            <section class="naming-opportunities">
+                <h2 class="section-title" style="color: #000; text-align: center;">Naming Opportunities</h2>
+                <div class="naming-grid">
+                    <div class="naming-card">
+                        <div class="naming-amount">$10M</div>
+                        <h4>The Building</h4>
+                        <p>Main community hub housing all programs and services</p>
+                    </div>
+                    <div class="naming-card">
+                        <div class="naming-amount">$3M</div>
+                        <h4>Multipurpose Space</h4>
+                        <p>Flexible community gathering and event space</p>
+                    </div>
+                    <div class="naming-card">
+                        <div class="naming-amount">$3M</div>
+                        <h4>Early Learning Center</h4>
+                        <p>Quality preschool programs for early learners</p>
+                    </div>
+                    <div class="naming-card">
+                        <div class="naming-amount">$2M</div>
+                        <h4>Food Pantry Space</h4>
+                        <p>Combating food insecurity in our community</p>
+                    </div>
+                    <div class="naming-card">
+                        <div class="naming-amount">$1.5M</div>
+                        <h4>Glass Atrium</h4>
+                        <p>Beautiful welcoming entrance space</p>
+                    </div>
+                    <div class="naming-card">
+                        <div class="naming-amount">$1M</div>
+                        <h4>Rooftop Garden</h4>
+                        <p>Community garden promoting sustainability</p>
+                    </div>
+                    <div class="naming-card">
+                        <div class="naming-amount">$500K</div>
+                        <h4>Playground</h4>
+                        <p>Safe outdoor play space for children</p>
+                    </div>
+                    <div class="naming-card">
+                        <div class="naming-amount">$500K</div>
+                        <h4>Youth Activity Space</h4>
+                        <p>Dedicated area for youth programs</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Download Section -->
+            <section class="download-section">
+                <h2 class="section-title" style="color: #000;">Resources & Forms</h2>
+                <div class="download-buttons">
+                    <a href="#" class="download-btn">📄 Download Pledge Card</a>
+                    <a href="#" class="download-btn">📊 View Case Statement</a>
+                    <a href="#" class="download-btn">📅 Request a Meeting</a>
+                    <a href="#" class="download-btn">🤝 Partnership Opportunities</a>
+                </div>
+            </section>
+
+            <!-- Programming Collaborations -->
+            <section class="collaboration-section">
+                <h2 style="color: #D4AF37; text-align: center; margin-bottom: 2rem; font-size: 2.5rem;">Programming Collaborations</h2>
+                <div class="collaboration-grid">
+                    <div class="collaboration-card">
+                        <h3 style="color: #D4AF37; margin-bottom: 1rem;">Educational Partners</h3>
+                        <p>Collaborate with us to provide STEAM education, early learning programs, and adult education services.</p>
+                    </div>
+                    <div class="collaboration-card">
+                        <h3 style="color: #D4AF37; margin-bottom: 1rem;">Health & Wellness</h3>
+                        <p>Partner to offer health screenings, mental health services, and wellness programs for our community.</p>
+                    </div>
+                    <div class="collaboration-card">
+                        <h3 style="color: #D4AF37; margin-bottom: 1rem;">Food Security</h3>
+                        <p>Work with us to expand our food pantry services and community garden initiatives.</p>
+                    </div>
+                    <div class="collaboration-card">
+                        <h3 style="color: #D4AF37; margin-bottom: 1rem;">Senior Services</h3>
+                        <p>Join our efforts to provide enriching activities and support services for elderly community members.</p>
+                    </div>
+                    <div class="collaboration-card">
+                        <h3 style="color: #D4AF37; margin-bottom: 1rem;">Youth Development</h3>
+                        <p>Partner with our before and after-school programs and youth mentorship initiatives.</p>
+                    </div>
+                    <div class="collaboration-card">
+                        <h3 style="color: #D4AF37; margin-bottom: 1rem;">Economic Development</h3>
+                        <p>Support local entrepreneurs through our storefront program and business development services.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>Contact Us</h3>
+                        <p>admin@harambeenow.org</p>
+                        <p>(630) 384-9070</p>
+                        <p>TaKeena Cochren, Administrator</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Campaign Counsel</h3>
+                        <p>David M. McGowan, CFRE</p>
+                        <p>Dave McGowan Consulting LLC</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Follow Us</h3>
+                        <p>Facebook | Instagram | Twitter</p>
+                        <p>www.harambeenow.org</p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 The Harambee Initiative, Inc. | Tax ID: 99-0898227 | Together We Soar!</p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show selected page
+            document.getElementById(pageId + '-mockup').classList.add('active');
+            
+            // Update button states
+            const buttons = document.querySelectorAll('.mockup-controls button');
+            buttons.forEach(btn => btn.style.background = '#D4AF37');
+            event.target.style.background = '#000';
+            event.target.style.color = '#D4AF37';
+        }
+
+        // Instructions for saving as images
+        window.addEventListener('load', function() {
+            console.log('To save these mockups as images for Figma:');
+            console.log('1. Right-click on any page mockup');
+            console.log('2. Select "Save as image" or use browser screenshot tools');
+            console.log('3. Each page mockup is designed at web-standard dimensions');
+            console.log('4. Use the buttons in the top-right to switch between pages');
+        });
+    </script>
+</body>
+</html>D4AF37; font-weight: bold;">$5.5M</span>
+                    </div>
+                    <div class="budget-item">
+                        <div>
+                            <strong>HVAC/Electrical</strong>
+                            <div class="budget-bar">
+                                <div class="budget-fill" style="width: 40%;"></div>
+                            </div>
+                        </div>
+                        <span style="color: #D4AF37; font-weight: bold;">$2.2M</span>
+                    </div>
+                    <div class="budget-item">
+                        <div>
+                            <strong>Engineering</strong>
+                            <div class="budget-bar">
+                                <div class="budget-fill" style="width: 18%;"></div>
+                            </div>
+                        </div>
+                        <span style="color: #
