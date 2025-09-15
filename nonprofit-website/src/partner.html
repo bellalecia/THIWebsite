@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Harambee Initiative - Partner with Us</title>
+    <title id="site-title"></title>
     <link rel="stylesheet" href="css/harambee.css">
 </head>
 <body>
@@ -11,81 +11,40 @@
     <nav class="nav">
         <div class="logo">
             <div class="logo-icon">🏠</div>
-            <div class="logo-text">THE HARAMBEE INITIATIVE</div>
+            <div class="logo-text" id="nav-logo"></div>
         </div>
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="get-involved.html">Get Involved</a></li>
-            <li><a href="partner.html" class="active">Partner with Us</a></li>
+            <li><a href="index.html" id="nav-home"></a></li>
+            <li><a href="about.html" id="nav-about"></a></li>
+            <li><a href="get-involved.html" id="nav-get-involved"></a></li>
+            <li><a href="partner.html" class="active" id="nav-partner"></a></li>
         </ul>
     </nav>
 
     <!-- PAGE CONTENT -->
     <section class="donate-hero">
-        <h1>Partner with Us</h1>
-        <p>
-            Collaborate with The Harambee Initiative to create lasting change. Explore donation options, naming opportunities, and programming collaborations.
-        </p>
+        <h1 id="partner-title"></h1>
+        <p id="partner-intro"></p>
     </section>
 
     <section>
-        <div class="donation-options">
-            <div class="donation-card">
-                <h3>One-Time Gift</h3>
-                <p>Support our mission with a single donation.</p>
-            </div>
-            <div class="donation-card">
-                <h3>Monthly Giving</h3>
-                <p>Become a sustaining supporter with recurring gifts.</p>
-            </div>
-            <div class="donation-card">
-                <h3>Major Gifts</h3>
-                <p>Make a significant impact through major contributions.</p>
-            </div>
-        </div>
+        <div class="donation-options" id="donation-options"></div>
     </section>
 
     <section class="naming-opportunities">
-        <h2 class="section-title">Naming Opportunities</h2>
-        <div class="naming-grid">
-            <div class="naming-card">
-                <div class="naming-amount">$1M</div>
-                <div>Main Building</div>
-            </div>
-            <div class="naming-card">
-                <div class="naming-amount">$500K</div>
-                <div>Multipurpose Space</div>
-            </div>
-            <div class="naming-card">
-                <div class="naming-amount">$250K</div>
-                <div>Early Learning Center</div>
-            </div>
-        </div>
+        <h2 class="section-title" id="naming-title"></h2>
+        <div class="naming-grid" id="naming-grid"></div>
     </section>
 
     <section class="collaboration-section">
-        <h2 class="section-title">Programming Collaborations</h2>
-        <div class="collaboration-grid">
-            <div class="collaboration-card">
-                <h3>Corporate Partners</h3>
-                <p>Join us as a corporate partner to support community programs.</p>
-            </div>
-            <div class="collaboration-card">
-                <h3>Nonprofit Organizations</h3>
-                <p>Collaborate with us to expand our reach and impact.</p>
-            </div>
-            <div class="collaboration-card">
-                <h3>Community Leaders</h3>
-                <p>Lead initiatives and inspire change in your community.</p>
-            </div>
-        </div>
+        <h2 class="section-title" id="collaboration-title"></h2>
+        <div class="collaboration-grid" id="collaboration-grid"></div>
     </section>
 
     <section class="download-section">
-        <h2 class="section-title">Download Our Case Statement</h2>
+        <h2 class="section-title" id="download-title"></h2>
         <div class="download-buttons">
-            <a href="#" class="download-btn">Download PDF</a>
+            <a href="#" class="download-btn" id="download-btn"></a>
         </div>
     </section>
 
@@ -93,24 +52,24 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
-                <h3>Contact Us</h3>
-                <p>admin@harambeenow.org</p>
-                <p>(630) 384-9070</p>
+                <h3 id="footer-contact-title"></h3>
+                <p id="footer-contact-email"></p>
+                <p id="footer-contact-phone"></p>
             </div>
             <div class="footer-section">
-                <h3>Quick Links</h3>
-                <p><a href="#">Donate Now</a></p>
-                <p><a href="#">Volunteer</a></p>
-                <p><a href="#">Programs</a></p>
+                <h3 id="footer-quick-title"></h3>
+                <div id="footer-quick-links"></div>
             </div>
             <div class="footer-section">
-                <h3>Follow Us</h3>
-                <p>Facebook | Instagram | Twitter</p>
+                <h3 id="footer-follow-title"></h3>
+                <p id="footer-follow-links"></p>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 The Harambee Initiative, Inc. | Tax ID: 99-0898227</p>
+            <p id="footer-copyright"></p>
         </div>
     </footer>
+    <script src="js/strings.js"></script>
+    <script src="js/partner.js"></script>
 </body>
 </html>
