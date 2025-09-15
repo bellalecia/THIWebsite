@@ -172,7 +172,8 @@
         .hero-subtitle {
             font-size: 1.4rem;
             margin-bottom: 2rem;
-            max-width: 600px;
+            white-space: normal; /* Allow wrapping */
+            word-break: break-word;
         }
 
         .cta-button {
@@ -287,11 +288,6 @@
         }
 
         /* ABOUT PAGE STYLES */
-        .about-hero {
-            background: white;
-            padding: 6rem 2rem 3rem;
-            text-align: center;
-        }
 
         .about-intro {
             max-width: 800px;
@@ -400,13 +396,6 @@
         }
 
         /* GET INVOLVED PAGE STYLES */
-        .programs-hero {
-            background: linear-gradient(135deg, #000, #1a1a1a);
-            color: white;
-            padding: 6rem 2rem 4rem;
-            text-align: center;
-        }
-
         .programs-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -415,17 +404,20 @@
         }
 
         .program-card {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
+            background: white;
             padding: 2rem;
             border-radius: 15px;
-            border-left: 5px solid #D4AF37;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-top: 4px solid #D4AF37;
+            color: #000;
         }
 
         .program-title {
             color: #D4AF37;
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
         }
 
         .video-section {
@@ -467,8 +459,10 @@
         }
 
         /* PARTNER WITH US PAGE STYLES */
+        .about-hero,
+        .programs-hero,
         .donate-hero {
-            background: linear-gradient(135deg, #D4AF37, #FFD700);
+            background: white;
             color: #000;
             padding: 6rem 2rem 4rem;
             text-align: center;

@@ -8,7 +8,7 @@ const STRINGS = {
     },
     hero: {
         title: "TOGETHER WE SOAR",
-        subtitle: "A Safe Gathering Space for Physical, Mental, Emotional, and Spiritual Well-Being",
+        subtitle: "A Safe Gathering Space for Physical, Mental, Emotional, and Spiritual Well-Being", // now one line
         button: "Learn More"
     },
     mission: {
