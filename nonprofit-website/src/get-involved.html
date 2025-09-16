@@ -57,14 +57,72 @@
             </div>
         </div>
     </section>
+    <!-- Place this section where you want the carousel to appear -->
 
+<section class="photo-carousel-section" style="max-width:700px; margin:40px auto;">
+    <h2 class="section-title" style="text-align:center;">Programs Photo Carousel</h2>
+    <div class="carousel-container" style="position:relative; overflow:hidden;">
+        <button class="carousel-btn" id="carousel-prev" style="position:absolute; left:10px; top:50%; transform:translateY(-50%); z-index:2; background:#ffc72c; border:none; border-radius:50%; width:40px; height:40px; font-size:1.5rem; cursor:pointer;">&#8592;</button>
+        <div class="carousel-images" id="carousel-images" style="display:flex; transition:transform 0.5s; width:100%;">
+            <!-- Images will be injected by JS -->
+        </div>
+        <button class="carousel-btn" id="carousel-next" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); z-index:2; background:#ffc72c; border:none; border-radius:50%; width:40px; height:40px; font-size:1.5rem; cursor:pointer;">&#8594;</button>
+    </div>
+</section>
+
+<script>
+    // List all images in the Programs folder (update if you add/remove images)
+    const imageFiles = [
+        "20250626_183041(0)_Original (1).jpg",
+        "Elderly Enrichment_Yoga.HEIC",
+        "GS_BS.HEIC",
+        "GWG1.jpeg",
+        "GWG2.JPG",
+        "Health Seminar_Elderly Enrichment.JPEG",
+        "HOC1.jpg",
+        "HOC2.jpg",
+        "HOC3.jpg",
+        "HOC4.jpg",
+        "HOC5.jpg",
+        "HOC6.jpg",
+        "IMG_6893.jpg",
+        "Jack and Jill Beautillion.HEIC",
+        "R.E.A.C.H. Food Pantry.jpg"
+    ];
+
+    const imagesContainer = document.getElementById('carousel-images');
+    imagesContainer.innerHTML = imageFiles.map(file =>
+        `<img src="media/Programs/${file}" alt="Programs Photo" style="width:100%; max-height:400px; object-fit:cover; border-radius:12px;">`
+    ).join('');
+
+    const images = document.querySelectorAll('#carousel-images img');
+    let currentIndex = 0;
+
+    function showImage(index) {
+        imagesContainer.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    document.getElementById('carousel-prev').onclick = function() {
+        currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+        showImage(currentIndex);
+    };
+
+    document.getElementById('carousel-next').onclick = function() {
+        currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+        showImage(currentIndex);
+    };
+
+    showImage(currentIndex);
+</script>
     <!-- Video Section -->
     <section class="video-section">
         <h2 class="section-title" style="text-align:center;">Learn More About Our Impact</h2>
-        <div class="video-placeholder">
-            <span>Watch our story (video coming soon)</span>
-        </div>
+        <video width="100%" height="auto" controls style="max-width:640px; display:block; margin:0 auto;">
+            <source src="media/GwG Interest Meeting.MOV" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
     </section>
+
 
     <!-- Partner Logos -->
     <section>
