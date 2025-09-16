@@ -21,6 +21,31 @@ document.getElementById('collaboration-grid').innerHTML = STRINGS.partner.collab
 document.getElementById('download-title').textContent = STRINGS.partner.downloadTitle;
 document.getElementById('download-btn').textContent = STRINGS.partner.downloadBtn;
 
+// Board Section
+document.getElementById('board-title').textContent = STRINGS.about.boardTitle;
+
+// Load board members dynamically from JSON
+async function loadBoardMembers() {
+    try {
+        const response = await fetch('data/board.json');
+        if (!response.ok) throw new Error('Failed to load board data');
+        const boardMembers = await response.json();
+        
+        document.getElementById('board-members').innerHTML = boardMembers.map(member =>
+            `<div class="board-member"><div class="member-name">${member.name}</div><div class="member-title">${member.title}</div></div>`
+        ).join('');
+    } catch (error) {
+        console.warn('Failed to load board members from JSON, using fallback data:', error);
+        // Fallback to static data if JSON fails to load
+        document.getElementById('board-members').innerHTML = STRINGS.about.boardMembers.map(member =>
+            `<div class="board-member"><div class="member-name">${member.name}</div><div class="member-title">${member.title}</div></div>`
+        ).join('');
+    }
+}
+
+// Load board members
+loadBoardMembers();
+
 // Footer
 document.getElementById('footer-contact-title').textContent = STRINGS.footer.contactTitle;
 document.getElementById('footer-contact-email').textContent = STRINGS.footer.contactEmail;
