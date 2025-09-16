@@ -116,6 +116,6 @@ partner: {
         { title: "Community Leaders", text: "Lead initiatives and inspire change in your community." }
     ],
     downloadTitle: "Resources & Forms",
-    downloadBtn: "Download PDF"
+    downloadBtn: "Download Pledge Card"
     }
 };

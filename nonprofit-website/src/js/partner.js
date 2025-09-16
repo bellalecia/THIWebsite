@@ -23,6 +23,27 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('download-title').textContent = STRINGS.partner.downloadTitle;
         document.getElementById('download-btn').textContent = STRINGS.partner.downloadBtn;
 
+        // Add click handler to download the pledge PDF
+        const downloadBtn = document.getElementById('download-btn');
+        if (downloadBtn) {
+            const pdfRelativePath = 'media/THI PLEDGE FORM.pdf';
+            const pdfUrl = pdfRelativePath.replace(/ /g, '%20'); // encode spaces for URL
+            downloadBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                try {
+                    const a = document.createElement('a');
+                    a.href = pdfUrl;
+                    a.download = 'THI_PLEDGE_FORM.pdf';
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                } catch (err) {
+                    // Fallback: open in new tab
+                    window.open(pdfUrl, '_blank');
+                }
+            });
+        }
+
         // Set board section
         document.getElementById('board-title').textContent = STRINGS.about.boardTitle;
         loadBoardMembers();
