@@ -1,11 +1,11 @@
-document.getElementById('site-title').textContent = STRINGS.siteTitle + " - Home";
-document.getElementById('nav-logo').textContent = STRINGS.siteTitle.toUpperCase();
-document.getElementById('nav-home').textContent = STRINGS.nav.home;
-document.getElementById('nav-about').textContent = STRINGS.nav.about;
-document.getElementById('nav-get-involved').textContent = STRINGS.nav.getInvolved;
-document.getElementById('nav-partner').textContent = STRINGS.nav.partner;
-
-document.getElementById('hero-title').textContent = STRINGS.hero.title;
+document.addEventListener('DOMContentLoaded', function() {
+    // Set page title
+    document.getElementById('site-title').textContent = STRINGS.siteTitle + " - Home";
+    
+    // Wait for includes to load
+    setTimeout(() => {
+        // Set hero section content
+        document.getElementById('hero-title').textContent = STRINGS.hero.title;
 document.getElementById('hero-subtitle').textContent = STRINGS.hero.subtitle;
 document.getElementById('hero-button').textContent = STRINGS.hero.button;
 
@@ -38,3 +38,5 @@ document.getElementById('footer-quick-links').innerHTML = STRINGS.footer.quickLi
 document.getElementById('footer-follow-title').textContent = STRINGS.footer.followTitle;
 document.getElementById('footer-follow-links').textContent = STRINGS.footer.followLinks;
 document.getElementById('footer-copyright').innerHTML = STRINGS.footer.copyright;
+    }, 100); // Small delay to ensure includes are loaded
+});

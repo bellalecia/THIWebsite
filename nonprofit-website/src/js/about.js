@@ -1,11 +1,10 @@
-document.getElementById('site-title').textContent = STRINGS.siteTitle + " - About";
-document.getElementById('nav-logo').textContent = STRINGS.siteTitle.toUpperCase();
-document.getElementById('nav-home').textContent = STRINGS.nav.home;
-document.getElementById('nav-about').textContent = STRINGS.nav.about;
-document.getElementById('nav-get-involved').textContent = STRINGS.nav.getInvolved;
-document.getElementById('nav-partner').textContent = STRINGS.nav.partner;
+document.addEventListener('DOMContentLoaded', function() {
+    // Set page title
+    document.getElementById('site-title').textContent = STRINGS.siteTitle + " - About";
 
-// About Section
+    // Wait for includes to load
+    setTimeout(() => {
+        // About Section
 document.getElementById('about-title').textContent = STRINGS.about.title;
 document.getElementById('about-intro').textContent = STRINGS.about.intro;
 
@@ -44,10 +43,8 @@ document.getElementById('budget-breakdown').innerHTML = STRINGS.about.budget.map
 document.getElementById('testimonial-text').textContent = STRINGS.about.testimonial.text;
 document.getElementById('testimonial-author').textContent = STRINGS.about.testimonial.author;
 
-// Footer
-document.getElementById('footer-contact-title').textContent = STRINGS.footer.contactTitle;
-document.getElementById('footer-contact-email').textContent = STRINGS.footer.contactEmail;
-document.getElementById('footer-contact-phone').textContent = STRINGS.footer.contactPhone;
+    }, 100); // Small delay to ensure includes are loaded
+});
 document.getElementById('footer-quick-title').textContent = STRINGS.footer.quickLinksTitle;
 document.getElementById('footer-quick-links').innerHTML = STRINGS.footer.quickLinks.map(link =>
     `<p><a href="${link.url}">${link.label}</a></p>`

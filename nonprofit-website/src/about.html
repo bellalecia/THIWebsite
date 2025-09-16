@@ -5,21 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="site-title"></title>
     <link rel="stylesheet" href="css/harambee.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="nav">
-        <div class="logo">
-            <div class="logo-icon">🏠</div>
-            <div class="logo-text" id="nav-logo"></div>
-        </div>
-        <ul class="nav-links">
-            <li><a href="index.html" id="nav-home"></a></li>
-            <li><a href="about.html" class="active" id="nav-about"></a></li>
-            <li><a href="get-involved.html" id="nav-get-involved"></a></li>
-            <li><a href="partner.html" id="nav-partner"></a></li>
-        </ul>
-    </nav>
+    <div id="header-placeholder"></div>
 
     <!-- PAGE CONTENT -->
     <section class="about-hero">
@@ -28,46 +19,26 @@
     </section>
 
     <section class="board-section">
-    <h2 class="section-title" id="board-title" style="text-align:center;"></h2>
-    <div class="board-grid" id="board-members"></div>
+        <h2 class="section-title" id="board-title"></h2>
+        <div class="board-grid" id="board-members"></div>
     </section>
 
     <section class="case-statement-section">
-        <h2 class="section-title" id="case-title" style="text-align:center;">Case Statement</h2>
+        <h2 class="section-title" id="case-title"></h2>
         <div class="budget-breakdown" id="budget-breakdown"></div>
     </section>
 
     <section class="testimonials-section">
-        <h2 class="section-title" style="text-align:center;">Community Testimonials</h2>
         <div class="testimonial-card">
             <div class="testimonial-text" id="testimonial-text"></div>
             <div class="testimonial-author" id="testimonial-author"></div>
         </div>
     </section>
 
-
     <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3 id="footer-contact-title"></h3>
-                <p id="footer-contact-email"></p>
-                <p id="footer-contact-phone"></p>
-            </div>
-            <div class="footer-section">
-                <h3 id="footer-quick-title"></h3>
-                <div id="footer-quick-links"></div>
-            </div>
-            <div class="footer-section">
-                <h3 id="footer-follow-title"></h3>
-                <p id="footer-follow-links"></p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p id="footer-copyright"></p>
-        </div>
-    </footer>
+    <div id="footer-placeholder" class="footer"></div>
     <script src="js/strings.js"></script>
+    <script src="js/includes.js"></script>
     <script src="js/about.js"></script>
 </body>
 </html>
