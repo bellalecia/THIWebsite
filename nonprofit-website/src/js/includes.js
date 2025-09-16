@@ -4,7 +4,6 @@ function loadIncludes() {
         <nav class="nav">
             <div class="logo">
                 <img src="media/THI Logo.jpg" alt="The Harambee Initiative Logo" class="logo-img">
-                <div class="logo-text">The Harambee Initiative, Inc.</div>
             </div>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>

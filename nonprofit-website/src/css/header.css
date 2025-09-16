@@ -1,7 +1,7 @@
 /* Header Styles */
 .nav {
     background: rgba(0, 0, 0, 0.95);
-    padding: 1.5rem 4rem;
+    padding: 0 4rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -13,20 +13,37 @@
     z-index: 1000;
     backdrop-filter: blur(10px);
     border-bottom: 2px solid #D4AF37;
+    height: 80px;
+    overflow: visible; /* Allow logo to extend beyond header */
+}
+
+/* Add spacing for the nav links to account for logo */
+.nav-links {
+    margin-left: 140px;
 }
 
 .logo {
     display: flex;
-    align-items: center;
-    gap: 1rem;
+    position: relative;
+    height: 100px;
 }
 
 .logo-img {
-    width: 50px;
-    height: 50px;
-    object-fit: contain;
-    border-radius: 5px;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    width: 120px;
+    height: 100px;
+    object-fit: scale-down;
+    background: white;
+    padding: 8px 12px;
+    transition: opacity 0.3s ease;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 0;
+    transform: translateY(6px);
+}
+
+.logo-img:hover {
+    opacity: 0.9;
 }
 
 .logo-text {
