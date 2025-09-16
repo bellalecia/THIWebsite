@@ -115,6 +115,19 @@ partner: {
         { title: "Nonprofit Organizations", text: "Collaborate with us to expand our reach and impact." },
         { title: "Community Leaders", text: "Lead initiatives and inspire change in your community." }
     ],
+    programmingCollaborations: [
+        { title: "Educational Partners", text: "Collaborate with us to provide STEAM education, early learning programs, and adult education services." },
+        { title: "Health & Wellness", text: "Partner to offer health screenings, mental health services, and wellness programs for our community." },
+        { title: "Food Security", text: "Work with us to expand our food pantry services and community garden initiatives." },
+        { title: "Senior Services", text: "Join our efforts to provide enriching activities and support services for elderly community members." },
+        { title: "Youth Development", text: "Partner with our before and after-school programs and youth mentorship initiatives." },
+        { title: "Economic Development", text: "Support local entrepreneurs through our storefront program and business development services." }
+    ],
+    waysToSupport: {
+        title: "Ways to Support",
+        prompt: "Interested in supporting The Harambee Initiative?",
+        contactLabel: "Contact us:"
+    },
     downloadTitle: "Resources & Forms",
     downloadBtn: "Download Pledge Card"
     }
