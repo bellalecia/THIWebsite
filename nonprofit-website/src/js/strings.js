@@ -68,7 +68,7 @@ const STRINGS = {
         intro: "Harambee, a Swahili word meaning \"all pull together\", represents our commitment to community unity and collective action. Founded on the critical work led by Reverend Conitras M. Houston Dickens, we are creating a transformative community hub in DuPage County.",
         boardTitle: "Board of Directors",
         boardMembers: [
-            { name: "Alecia Doe", title: "President" },
+            { name: "Alecia Bell", title: "President" },
             { name: "John Smith", title: "Vice President" },
             { name: "Mary Johnson", title: "Treasurer" }
             // Add more as needed
