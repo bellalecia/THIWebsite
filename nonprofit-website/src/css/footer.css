@@ -1,8 +1,8 @@
 .footer {
     background: linear-gradient(to bottom, #000, #1a1a1a);
     color: white;
-    padding: 4rem 2rem 2rem;
-    margin-top: 6rem;
+    padding: 3rem 2rem 1.5rem;
+    margin-top: 4rem;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -14,15 +14,15 @@
 .footer-sections-container {
     display: flex;
     justify-content: space-around;
-    gap: 4rem;
-    margin-bottom: 3rem;
+    gap: 3rem;
+    margin-bottom: 2rem;
     position: relative;
 }
 
 .footer-sections-container::before {
     content: '';
     position: absolute;
-    top: -2rem;
+    top: -1.5rem;
     left: 50%;
     transform: translateX(-50%);
     width: 50%;
@@ -36,10 +36,18 @@
     text-align: center;
 }
 
+.footer-section .contact-info p {
+    font-size: 0.85rem !important;
+}
+
+.footer-section .contact-info i {
+    font-size: 0.95rem !important;
+}
+
 .footer-section h3 {
     color: #D4AF37;
-    font-size: 1.4rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -72,36 +80,37 @@
 
 .social-links {
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem;
     justify-content: center;
-    align-items: center;
 }
 
 .social-link {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
     color: #fff;
     text-decoration: none;
     transition: all 0.3s ease;
-    padding: 0.5rem;
+    padding: 0.25rem 0.5rem;
     border-radius: 5px;
+    line-height: 1.2;
+    white-space: nowrap;
+    font-size: 0.85rem;
 }
 
 .social-link i {
-    font-size: 1.5rem;
-    width: 24px;
+    font-size: 0.95rem;
+    width: 14px;
     text-align: center;
+    margin-right: 0.4rem;
 }
 
 .social-link span {
-    font-size: 1rem;
+    font-size: 0.85rem;
 }
 
 .social-link:hover {
-    color: #D4AF37;
-    background: rgba(212, 175, 55, 0.1);
     transform: translateX(5px);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 /* Specific colors for each platform */

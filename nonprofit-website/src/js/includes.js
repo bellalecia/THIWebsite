@@ -20,25 +20,32 @@ function loadIncludes() {
             <div class="footer-sections-container">
                 <div class="footer-section">
                     <h3>Contact Us</h3>
-                    <p>admin@harambeenow.org</p>
-                    <p>(630) 384-9070</p>
+                    <div class="center-wrapper">
+                        <div class="contact-info">
+                            <span><i class="far fa-envelope"></i> admin@harambeenow.org</span>
+                            <span><i class="fas fa-phone"></i> (630) 384-9070</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="footer-section">
                     <h3>Follow Us</h3>
-                    <div class="social-links">
-                        <a href="https://www.facebook.com/p/The-Harambee-Initiative-Inc-61573615454626/" target="_blank" class="social-link">
-                            <i class="fab fa-facebook"></i>
-                            <span>Facebook</span>
-                        </a>
-                        <a href="https://www.instagram.com/harambeenow/?g=5" target="_blank" class="social-link">
-                            <i class="fab fa-instagram"></i>
-                            <span>Instagram</span>
-                        </a>
-                        <a href="https://www.linkedin.com/company/the-harambee-initiative-inc/" target="_blank" class="social-link">
-                            <i class="fab fa-linkedin"></i>
-                            <span>LinkedIn</span>
-                        </a>
+                    <div class="center-wrapper">
+                        <div class="social-links">
+                            <a href="https://www.facebook.com/p/The-Harambee-Initiative-Inc-61573615454626/" target="_blank" class="social-link">
+                                <i class="fab fa-facebook"></i>
+                                <span>Facebook</span>
+                            </a>
+                            <a href="https://www.instagram.com/harambeenow/?g=5" target="_blank" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                                <span>Instagram</span>
+                            </a>
+                            <a href="https://www.linkedin.com/company/the-harambee-initiative-inc/" target="_blank" class="social-link">
+                                <i class="fab fa-linkedin"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                        </div>
                     </div>
+                </div>
                 </div>
             </div>
         </div>
