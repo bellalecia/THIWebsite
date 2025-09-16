@@ -27,16 +27,5 @@ const componentsItems = STRINGS.components.items.map(item =>
     `<div class="component-card"><h3>${item.title}</h3><p>${item.text}</p><div class="component-cost">${item.cost}</div></div>`
 ).join('');
 document.getElementById('components-items').innerHTML = componentsItems;
-
-document.getElementById('footer-contact-title').textContent = STRINGS.footer.contactTitle;
-document.getElementById('footer-contact-email').textContent = STRINGS.footer.contactEmail;
-document.getElementById('footer-contact-phone').textContent = STRINGS.footer.contactPhone;
-document.getElementById('footer-quick-title').textContent = STRINGS.footer.quickLinksTitle;
-document.getElementById('footer-quick-links').innerHTML = STRINGS.footer.quickLinks.map(link =>
-    `<p><a href="${link.url}">${link.label}</a></p>`
-).join('');
-document.getElementById('footer-follow-title').textContent = STRINGS.footer.followTitle;
-document.getElementById('footer-follow-links').textContent = STRINGS.footer.followLinks;
-document.getElementById('footer-copyright').innerHTML = STRINGS.footer.copyright;
     }, 100); // Small delay to ensure includes are loaded
 });
