@@ -32,9 +32,9 @@ const STRINGS = {
     impact: {
         title: "Our Impact Goals",
         stats: [
-            { number: "50,000+", label: "Families Facing Food Insecurity" },
+            { number: "0,000+", label: "Families Facing Monthly Food Insecurity" },
             { number: "$10M", label: "Campaign Goal" },
-            { number: "23,000", label: "Children Under 5 Without Childcare Access" },
+            { number: "23,00+", label: "Children Under 5 Without Childcare Access" },
             { number: "33%", label: "Adults Lacking Digital Skills" }
         ]
     },
@@ -65,10 +65,10 @@ const STRINGS = {
     },
     about: {
         title: "About The Harambee Initiative",
-        intro: "The Harambee Initiative is dedicated to building a beloved community through holistic programs and collaborative action. Our story, mission, vision, and board of directors reflect our commitment to unity and empowerment.",
+        intro: "Harambee, a Swahili word meaning \"all pull together\", represents our commitment to community unity and collective action. Founded on the critical work led by Reverend Conitras M. Houston Dickens, we are creating a transformative community hub in DuPage County.",
         boardTitle: "Board of Directors",
         boardMembers: [
-            { name: "Alecia Doe", title: "President" },
+            { name: "Alecia Bell", title: "President" },
             { name: "John Smith", title: "Vice President" },
             { name: "Mary Johnson", title: "Treasurer" }
             // Add more as needed
@@ -97,17 +97,22 @@ const STRINGS = {
 },
 partner: {
     title: "Partner with Us",
-    intro: "Collaborate with The Harambee Initiative to create lasting change. Explore donation options, naming opportunities, and programming collaborations.",
+    intro: "Join us in building a $10 million transformative community hub that will serve DuPage County for generations to come.",
     donationOptions: [
-        { title: "One-Time Gift", text: "Support our mission with a single donation." },
-        { title: "Monthly Giving", text: "Become a sustaining supporter with recurring gifts." },
-        { title: "Major Gifts", text: "Make a significant impact through major contributions." }
+        { title: "Donations", text: "Please contact us to discuss donation opportunities." },
+        { title: "Corporate Partnership", text: "Partner with us for community impact and corporate social responsibility." }
     ],
     namingTitle: "Naming Opportunities",
     naming: [
-        { amount: "$1M", label: "Main Building" },
-        { amount: "$500K", label: "Multipurpose Space" },
-        { amount: "$250K", label: "Early Learning Center" }
+        { amount: "$10M", label: "The Building" },
+        { amount: "$3M", label: "The Multipurpose Space" },
+        { amount: "$3M", label: "The Early Learning Center" },
+        { amount: "$2M", label: "The Food Pantry Space" },
+        { amount: "$1.5M", label: "The Glass Atrium" },
+        { amount: "$1M", label: "The Rooftop Garden Space" },
+        { amount: "$500K", label: "The Playground" },
+        { amount: "$500K", label: "The Youth Activity Space" },
+        { amount: "$100K", label: "The Classroom/Vendor Spaces" }
     ],
     collaborationTitle: "Programming Collaborations",
     collaborations: [
@@ -115,7 +120,20 @@ partner: {
         { title: "Nonprofit Organizations", text: "Collaborate with us to expand our reach and impact." },
         { title: "Community Leaders", text: "Lead initiatives and inspire change in your community." }
     ],
+    programmingCollaborations: [
+        { title: "Educational Partners", text: "Collaborate with us to provide STEAM education, early learning programs, and adult education services." },
+        { title: "Health & Wellness", text: "Partner to offer health screenings, mental health services, and wellness programs for our community." },
+        { title: "Food Security", text: "Work with us to expand our food pantry services and community garden initiatives." },
+        { title: "Senior Services", text: "Join our efforts to provide enriching activities and support services for elderly community members." },
+        { title: "Youth Development", text: "Partner with our before and after-school programs and youth mentorship initiatives." },
+        { title: "Economic Development", text: "Support local entrepreneurs through our storefront program and business development services." }
+    ],
+    waysToSupport: {
+        title: "Ways to Support",
+        prompt: "Interested in supporting The Harambee Initiative?",
+        contactLabel: "Contact us:"
+    },
     downloadTitle: "Resources & Forms",
-    downloadBtn: "Download PDF"
+    downloadBtn: "Download Pledge Card"
     }
 };

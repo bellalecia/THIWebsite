@@ -5,21 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Harambee Initiative - Get Involved</title>
     <link rel="stylesheet" href="css/harambee.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/typography.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="logo">
-            <div class="logo-icon">🏠</div>
-            <div class="logo-text">THE HARAMBEE INITIATIVE</div>
-        </div>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="get-involved.html" class="active">Get Involved</a></li>
-            <li><a href="partner.html">Partner with Us</a></li>
-        </ul>
-    </nav>
+        <div id="header-placeholder"></div>
 
     <!-- Hero Section -->
     <section class="programs-hero">
@@ -29,109 +21,115 @@
 
     <!-- Our Programs Section -->
     <section>
-        <h2 class="section-title" style="text-align:center;">Our Programs</h2>
+        <h2 class="section-title" style="text-align:center;">Programs</h2>
         <div class="programs-grid">
             <div class="program-card">
-                <div class="program-title">Youth Enrichment</div>
-                <p>After-school and summer programs focused on academic support, leadership, and personal growth for youth.</p>
+                <div class="program-title">Food Security Programs</div>
+                <p>Expand access to nutritious meals and groceries provided through our community garden and partnership with R.E.A.C.H. food pantry.</p>
             </div>
             <div class="program-card">
-                <div class="program-title">Adult Education</div>
-                <p>Workshops and classes for adults including digital literacy, financial empowerment, and career readiness.</p>
+                <div class="program-title">Early Childhood Education</div>
+                <p>Equip early learners with essential skills and knowledge, building strong foundations and achieving positive outcomes.</p>
             </div>
             <div class="program-card">
-                <div class="program-title">Senior Services</div>
-                <p>Social, wellness, and support programs for seniors to foster connection and healthy living.</p>
+                <div class="program-title">Senior Enrichment</div>
+                <p>Coordinate engaging activities and enhance the overall well-being and quality of life for our most storied residents.</p>
             </div>
             <div class="program-card">
-                <div class="program-title">Food Pantry</div>
-                <p>Providing nutritious food and resources to families facing food insecurity in our community.</p>
+                <div class="program-title">STEAM Education</div>
+                <p>Empower DuPage County residents of all ages with the valuable tech skills needed to access new opportunities and drive innovation across our community.</p>
             </div>
             <div class="program-card">
-                <div class="program-title">Wellness & Mental Health</div>
-                <p>Holistic health programs including fitness, nutrition, and mental health support for all ages.</p>
+                <div class="program-title">Youth Development</div>
+                <p>Before and after-school services providing safe environments for children and support for working families.</p>
             </div>
             <div class="program-card">
-                <div class="program-title">Community Events</div>
-                <p>Celebrations, workshops, and gatherings to build unity and foster a sense of belonging.</p>
+                <div class="program-title">Entrepreneur Support</div>
+                <p>Storefront opportunities for local businesses to showcase products and stimulate economic growth.</p>
             </div>
         </div>
     </section>
     <!-- Place this section where you want the carousel to appear -->
 
-<section class="photo-carousel-section" style="max-width:700px; margin:40px auto;">
-    <h2 class="section-title" style="text-align:center;">Programs Photo Carousel</h2>
-    <div class="carousel-container" style="position:relative; overflow:hidden;">
-        <button class="carousel-btn" id="carousel-prev" style="position:absolute; left:10px; top:50%; transform:translateY(-50%); z-index:2; background:#ffc72c; border:none; border-radius:50%; width:40px; height:40px; font-size:1.5rem; cursor:pointer;">&#8592;</button>
-        <div class="carousel-images" id="carousel-images" style="display:flex; transition:transform 0.5s; width:100%;">
-            <!-- Images will be injected by JS -->
+    <section class="photo-carousel-section" style="max-width:600px; margin:40px auto;">
+        <h2 class="section-title" style="text-align:center;">Our Programs in Action</h2>
+        <div class="carousel-container" style="position:relative; overflow:hidden;">
+            <div class="carousel-images" id="carousel-images" style="position:relative; width:100%; height:400px;">
+                <!-- Images will be injected by JS with absolute positioning -->
+            </div>
         </div>
-        <button class="carousel-btn" id="carousel-next" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); z-index:2; background:#ffc72c; border:none; border-radius:50%; width:40px; height:40px; font-size:1.5rem; cursor:pointer;">&#8594;</button>
-    </div>
-</section>
+    </section>
 
-<script>
-    // List all images in the Programs folder (update if you add/remove images)
-    const imageFiles = [
-        "20250626_183041(0)_Original (1).jpg",
-        "Elderly Enrichment_Yoga.HEIC",
-        "GS_BS.HEIC",
-        "GWG1.jpeg",
-        "GWG2.JPG",
-        "Health Seminar_Elderly Enrichment.JPEG",
-        "HOC1.jpg",
-        "HOC2.jpg",
-        "HOC3.jpg",
-        "HOC4.jpg",
-        "HOC5.jpg",
-        "HOC6.jpg",
-        "IMG_6893.jpg",
-        "Jack and Jill Beautillion.HEIC",
-        "R.E.A.C.H. Food Pantry.jpg"
-    ];
+    <script>
+        const imageFiles = [
+            "GWG1.jpeg",
+            "Elderly_Enrichment_Yoga.jpg",
+            "GWG2.JPG",
+            "GS_BS.jpg",
+            "HOC1.jpg",
+            "Health Seminar_Elderly Enrichment.jpg",
+            "HOC3.jpg",
+            "IMG_0085_(1).jpg",
+            "HOC2.jpg",
+            "IMG_2237_(1).jpg",
+            "HOC4.jpg",
+            "IMG_6036_(1).jpg",
+            "HOC5.jpg",
+            "Jack_and_Jill_Beautillion.jpg",
+            "HOC6.jpg",
+            "R.E.A.C.H. Food Pantry.jpg"
+        ];
 
-    const imagesContainer = document.getElementById('carousel-images');
-    imagesContainer.innerHTML = imageFiles.map(file =>
-        `<img src="media/Programs/${file}" alt="Programs Photo" style="width:100%; max-height:400px; object-fit:cover; border-radius:12px;">`
-    ).join('');
+        const imagesContainer = document.getElementById('carousel-images');
+        
+        imagesContainer.innerHTML = imageFiles.map((file, index) =>
+            `<img src="media/Programs/${file}" alt="Programs Photo ${index + 1}" 
+            style="position:absolute; top:0; left:0; width:100%; height:100%; 
+            object-fit:contain; opacity:0; transition:opacity 0.5s ease-in-out;">`
+        ).join('');
 
-    const images = document.querySelectorAll('#carousel-images img');
-    let currentIndex = 0;
+        const images = document.querySelectorAll('#carousel-images img');
+        let currentIndex = 0;
 
-    function showImage(index) {
-        imagesContainer.style.transform = `translateX(-${index * 100}%)`;
-    }
+        function showImage(index) {
+            images.forEach(img => img.style.opacity = '0');
+            images[index].style.opacity = '1';
+        }
 
-    document.getElementById('carousel-prev').onclick = function() {
-        currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+        function nextImage() {
+            currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+            showImage(currentIndex);
+        }
+
+        // Show first image on load
         showImage(currentIndex);
-    };
 
-    document.getElementById('carousel-next').onclick = function() {
-        currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
-        showImage(currentIndex);
-    };
+        // Auto-advance every 3 seconds
+        setInterval(nextImage, 3000);
+    </script>
 
-    showImage(currentIndex);
-</script>
     <!-- Video Section -->
     <section class="video-section">
         <h2 class="section-title" style="text-align:center;">Learn More About Our Impact</h2>
-        <video width="100%" height="auto" controls style="max-width:640px; display:block; margin:0 auto;">
-            <source src="media/GwG Interest Meeting.MOV" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+        <div class="video-container">
+            <iframe 
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                src="https://www.youtube.com/embed/ot22zrAQ5fs" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
     </section>
 
 
     <!-- Partner Logos -->
     <section>
         <h2 class="section-title" style="text-align:center;">Our Partners</h2>
-        <div class="partner-logos">
-            <div class="partner-logo">Partner 1</div>
-            <div class="partner-logo">Partner 2</div>
-            <div class="partner-logo">Partner 3</div>
-            <div class="partner-logo">Partner 4</div>
+        <div class="partner-logos" style="display: flex; justify-content: center; align-items: center; gap: 50px; flex-wrap: wrap; margin: 20px auto; max-width: 900px; padding: 20px;">
+            <img src="media/Partners/2025 High Impact Partner Badge.png" alt="High Impact Partner" style="width: 220px; height: 150px; object-fit: contain;">
+            <img src="media/Partners/2c4585_1447d3b7eea54ea8a32d84155317b6be~mv2.avif" alt="Partner Logo" style="width: 240px; height: 120px; object-fit: contain;">
+            <img src="media/Partners/REACH-Logo-WPready-resized.webp" alt="REACH Logo" style="width: 240px; height: 120px; object-fit: contain;">
         </div>
     </section>
 
@@ -145,27 +143,10 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Contact Us</h3>
-                <p>admin@harambeenow.org</p>
-                <p>(630) 384-9070</p>
-            </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <p><a href="#">Donate Now</a></p>
-                <p><a href="#">Volunteer</a></p>
-                <p><a href="#">Programs</a></p>
-            </div>
-            <div class="footer-section">
-                <h3>Follow Us</h3>
-                <p>Facebook | Instagram | Twitter</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 The Harambee Initiative, Inc. | Tax ID: 99-0898227</p>
-        </div>
-    </footer>
+    <div id="footer-placeholder" class="footer"></div>
+    
+    <script src="js/strings.js"></script>
+    <script src="js/includes.js"></script>
+    <script src="js/get-involved.js"></script>
 </body>
 </html>

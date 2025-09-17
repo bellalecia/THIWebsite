@@ -87,16 +87,11 @@
             gap: 10px;
         }
 
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: #D4AF37;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: #000;
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+            border-radius: 5px;
         }
 
         .logo-text {
@@ -158,6 +153,11 @@
         .hero-content {
             position: relative;
             z-index: 2;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
         }
 
         .hero-title {
@@ -169,11 +169,29 @@
             -webkit-text-fill-color: transparent;
         }
 
+        .hero-section {
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
         .hero-subtitle {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             margin-bottom: 2rem;
-            white-space: normal; /* Allow wrapping */
-            word-break: break-word;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .hero-subtitle {
+                font-size: 1rem;
+                padding: 0 15px;
+            }
         }
 
         .cta-button {
@@ -186,6 +204,14 @@
             font-weight: bold;
             cursor: pointer;
             box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.4);
         }
 
         .mission-section {
@@ -221,7 +247,6 @@
 
         .mission-card {
             background: #000;
-            color: white;
             padding: 2rem;
             border-radius: 15px;
             border: 2px solid #D4AF37;
@@ -231,6 +256,13 @@
             color: #D4AF37;
             margin-bottom: 1rem;
             font-size: 1.4rem;
+        }
+
+        .mission-card p {
+            color: white;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            opacity: 0.9;
         }
 
         .stats-section {
@@ -316,6 +348,12 @@
             text-align: center;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             border-top: 4px solid #D4AF37;
+        }
+
+        .board-member .member-title {
+            white-space: pre-line;
+            line-height: 1.4;
+            margin-top: 0.5rem;
         }
 
         .member-name {
@@ -433,6 +471,34 @@
             background: white;
             padding: 4rem 2rem;
             text-align: center;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 45%;
+            height: 0;
+            width: 100%;
+            max-width: 800px;
+            max-height: 400px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        @media screen and (max-width: 768px) {
+            .video-section {
+                padding: 1rem 0.5rem;
+            }
+            .video-container {
+                width: 95%;
+                padding-bottom: 65%;
+                max-height: none;
+            }
+        }
+
+        @media screen and (min-width: 1200px) {
+            .video-container {
+                padding-bottom: 400px;
+            }
         }
 
         .video-placeholder {
@@ -611,7 +677,36 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
-            margin-bottom: 2rem;
+        }
+
+        .center-wrapper {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-top: 0.4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .contact-info span {
+            display: inline-flex;
+            align-items: center;
+            white-space: nowrap;
+            line-height: 1.2;
+        }
+
+        .contact-info i {
+            color: #D4AF37;
+            width: 14px;
+            text-align: center;
+            margin-right: 0.4rem;
+            font-size: 0.95rem !important;
         }
 
         .footer-section h3 {

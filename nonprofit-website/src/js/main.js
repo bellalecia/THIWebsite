@@ -1,11 +1,11 @@
-document.getElementById('site-title').textContent = STRINGS.siteTitle + " - Home";
-document.getElementById('nav-logo').textContent = STRINGS.siteTitle.toUpperCase();
-document.getElementById('nav-home').textContent = STRINGS.nav.home;
-document.getElementById('nav-about').textContent = STRINGS.nav.about;
-document.getElementById('nav-get-involved').textContent = STRINGS.nav.getInvolved;
-document.getElementById('nav-partner').textContent = STRINGS.nav.partner;
-
-document.getElementById('hero-title').textContent = STRINGS.hero.title;
+document.addEventListener('DOMContentLoaded', function() {
+    // Set page title
+    document.getElementById('site-title').textContent = STRINGS.siteTitle + " - Home";
+    
+    // Wait for includes to load
+    setTimeout(() => {
+        // Set hero section content
+        document.getElementById('hero-title').textContent = STRINGS.hero.title;
 document.getElementById('hero-subtitle').textContent = STRINGS.hero.subtitle;
 document.getElementById('hero-button').textContent = STRINGS.hero.button;
 
@@ -24,17 +24,12 @@ document.getElementById('impact-stats').innerHTML = impactStats;
 
 document.getElementById('components-title').textContent = STRINGS.components.title;
 const componentsItems = STRINGS.components.items.map(item =>
-    `<div class="component-card"><h3>${item.title}</h3><p>${item.text}</p><div class="component-cost">${item.cost}</div></div>`
+    `<div class="component-card">
+        <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem;">${item.title}</h3>
+        <p style="font-size: 1.1rem;">${item.text}</p>
+        <div class="component-cost" style="font-size: 1rem; margin-top: 0.5rem;">${item.cost}</div>
+    </div>`
 ).join('');
 document.getElementById('components-items').innerHTML = componentsItems;
-
-document.getElementById('footer-contact-title').textContent = STRINGS.footer.contactTitle;
-document.getElementById('footer-contact-email').textContent = STRINGS.footer.contactEmail;
-document.getElementById('footer-contact-phone').textContent = STRINGS.footer.contactPhone;
-document.getElementById('footer-quick-title').textContent = STRINGS.footer.quickLinksTitle;
-document.getElementById('footer-quick-links').innerHTML = STRINGS.footer.quickLinks.map(link =>
-    `<p><a href="${link.url}">${link.label}</a></p>`
-).join('');
-document.getElementById('footer-follow-title').textContent = STRINGS.footer.followTitle;
-document.getElementById('footer-follow-links').textContent = STRINGS.footer.followLinks;
-document.getElementById('footer-copyright').innerHTML = STRINGS.footer.copyright;
+    }, 100); // Small delay to ensure includes are loaded
+});

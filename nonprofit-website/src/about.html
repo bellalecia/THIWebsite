@@ -5,21 +5,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="site-title"></title>
     <link rel="stylesheet" href="css/harambee.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/typography.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <style>
+        .case-statement-section {
+            background-color: white;
+            color: black;
+            padding: 40px 0;
+        }
+        .case-statement-section .section-title {
+            color: black;
+        }
+        .flipbook-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        #pdf-container {
+            margin: 20px auto;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            background-color: #ffffff;
+        }
+        canvas {
+            max-width: 100%;
+            height: auto !important;
+            display: block;
+            background-color: white;
+        }
+        .flipbook-container {
+            position: relative;
+        }
+        .controls {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: -60px;
+            right: -60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            pointer-events: none;
+        }
+        @media (max-width: 768px) {
+            .controls {
+                left: -20px;
+                right: -20px;
+            }
+        }
+        .controls button {
+            width: 40px;
+            height: 40px;
+            background-color: rgb(255, 199, 44);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            pointer-events: auto;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .controls button:hover {
+            background-color: rgb(230, 179, 37);
+            transform: scale(1.1);
+        }
+        canvas {
+            max-width: 100%;
+            height: auto !important;
+            display: block;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="nav">
-        <div class="logo">
-            <div class="logo-icon">🏠</div>
-            <div class="logo-text" id="nav-logo"></div>
-        </div>
-        <ul class="nav-links">
-            <li><a href="index.html" id="nav-home"></a></li>
-            <li><a href="about.html" class="active" id="nav-about"></a></li>
-            <li><a href="get-involved.html" id="nav-get-involved"></a></li>
-            <li><a href="partner.html" id="nav-partner"></a></li>
-        </ul>
-    </nav>
+    <div id="header-placeholder"></div>
 
     <!-- PAGE CONTENT -->
     <section class="about-hero">
@@ -28,47 +93,144 @@
     </section>
 
     <section class="board-section">
-    <h2 class="section-title" id="board-title" style="text-align:center;"></h2>
-    <div class="board-grid" id="board-members"></div>
+        <h2 class="section-title" id="board-title"></h2>
+        <div class="board-grid" id="board-members"></div>
+        <div class="board-image-container" style="margin: 40px auto; max-width: 800px;">
+            <img src="media/Board members.JPG" alt="Board Members Group Photo" style="width: 100%; height: auto; display: block; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+        </div>
     </section>
 
     <section class="case-statement-section">
-        <h2 class="section-title" id="case-title" style="text-align:center;">Case Statement</h2>
-        <div class="budget-breakdown" id="budget-breakdown"></div>
+        <h2 class="section-title" id="case-title"></h2>
+        <div class="flipbook-container">
+            <div id="pdf-container">
+                <canvas id="pdf-render"></canvas>
+            </div>
+            <div class="controls">
+                <button id="prev"><i class="fas fa-chevron-left"></i></button>
+                <button id="next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            </div>
+        </div>
     </section>
 
     <section class="testimonials-section">
-        <h2 class="section-title" style="text-align:center;">Community Testimonials</h2>
-        <div class="testimonial-card">
-            <div class="testimonial-text" id="testimonial-text"></div>
-            <div class="testimonial-author" id="testimonial-author"></div>
+        <h2 class="section-title" style="text-align: center; margin-bottom: 40px;">Community Testimonials</h2>
+        <div class="testimonials-container" style="display: flex; gap: 30px; max-width: 1200px; margin: 0 auto; padding: 20px; flex-wrap: wrap; justify-content: center;">
+            <div class="testimonial-card" style="flex: 1; min-width: 300px; max-width: 500px; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                <div class="testimonial-text" style="font-size: 1.1em; line-height: 1.6; margin-bottom: 20px; color: #333;">
+                    "Our family really appreciates all of the kind donations that you have given us. It really has made a big difference in our lives. Because of your donations, we are able to feed our seven children and granddaughter more effectively."
+                </div>
+                <div class="testimonial-author" style="font-weight: bold; color: #666;">
+                    - Crystal, R.E.A.C.H. Client
+                </div>
+            </div>
+            <div class="testimonial-card" style="flex: 1; min-width: 300px; max-width: 500px; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                <div class="testimonial-text" style="font-size: 1.1em; line-height: 1.6; margin-bottom: 20px; color: #333;">
+                    "The West Suburban Chicago Chapter of Jack and Jill of America, Incorporated has fully enjoyed a great relationship with DuPage AME Church for over 8 years. We truly support and believe in the vision of The Harambee Initiative."
+                </div>
+                <div class="testimonial-author" style="font-weight: bold; color: #666;">
+                    - Nicole Fleming, Jack and Jill of America Inc.
+                </div>
+            </div>
         </div>
     </section>
 
-
     <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3 id="footer-contact-title"></h3>
-                <p id="footer-contact-email"></p>
-                <p id="footer-contact-phone"></p>
-            </div>
-            <div class="footer-section">
-                <h3 id="footer-quick-title"></h3>
-                <div id="footer-quick-links"></div>
-            </div>
-            <div class="footer-section">
-                <h3 id="footer-follow-title"></h3>
-                <p id="footer-follow-links"></p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p id="footer-copyright"></p>
-        </div>
-    </footer>
+    <div id="footer-placeholder" class="footer"></div>
     <script src="js/strings.js"></script>
     <script src="js/board-data-config.js"></script>
+    <script src="js/includes.js"></script>
     <script src="js/about.js"></script>
+    <script>
+        // Configure PDF.js worker
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+        let pdfDoc = null,
+            pageNum = 1,
+            pageRendering = false,
+            pageNumPending = null,
+            scale = 1.5,
+            canvas = document.querySelector('#pdf-render'),
+            ctx = canvas.getContext('2d');
+
+        // Load the PDF
+        console.log('Attempting to load PDF...');
+        pdfjsLib.getDocument('./media/Case Statement.pdf').promise.then(function(pdfDoc_) {
+            console.log('PDF loaded successfully');
+            pdfDoc = pdfDoc_;
+            renderPage(pageNum);
+        }).catch(function(error) {
+            console.error('Error loading PDF:', error);
+            document.querySelector('#pdf-container').innerHTML = 
+                '<p style="color: red; padding: 20px;">Error loading the PDF. Please check the console for details.</p>';
+        });
+
+        function renderPage(num) {
+            pageRendering = true;
+            pdfDoc.getPage(num).then(function(page) {
+                const viewport = page.getViewport({scale: scale});
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+
+                // Clear the canvas with white background
+                ctx.fillStyle = 'white';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                const renderContext = {
+                    canvasContext: ctx,
+                    viewport: viewport,
+                    background: 'white'
+                };
+                
+                const renderTask = page.render(renderContext);
+
+                renderTask.promise.then(function() {
+                    pageRendering = false;
+                    if (pageNumPending !== null) {
+                        renderPage(pageNumPending);
+                        pageNumPending = null;
+                    }
+                });
+            });
+
+        }
+
+        function queueRenderPage(num) {
+            if (pageRendering) {
+                pageNumPending = num;
+            } else {
+                renderPage(num);
+            }
+        }
+
+        function onPrevPage() {
+            if (pageNum <= 1) {
+                return;
+            }
+            pageNum--;
+            queueRenderPage(pageNum);
+        }
+
+        function onNextPage() {
+            if (pageNum >= pdfDoc.numPages) {
+                return;
+            }
+            pageNum++;
+            queueRenderPage(pageNum);
+        }
+
+        document.querySelector('#prev').addEventListener('click', onPrevPage);
+        document.querySelector('#next').addEventListener('click', onNextPage);
+
+        // Add keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                onPrevPage();
+            } else if (e.key === 'ArrowRight') {
+                onNextPage();
+            }
+        });
+    </script>
 </body>
 </html>

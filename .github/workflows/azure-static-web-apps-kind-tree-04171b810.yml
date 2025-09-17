@@ -1,0 +1,80 @@
+name: Azure Static Web Apps CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - main
+
+jobs:
+  build_and_deploy_job:
+    runs-on: ubuntu-latest
+    name: Build and Deploy Job
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+          lfs: false
+
+      - name: Set up Node.js (for optional builds)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Detect build step and prepare deploy folder
+        id: prepare
+        run: |
+          echo "Detecting project type and preparing DEPLOY_DIR..."
+          if [ -f nonprofit-website/src/package.json ]; then
+            echo "package.json found — installing dependencies and attempting build"
+            cd nonprofit-website/src
+            npm ci --silent
+            # run build only if a `build` script exists
+            if npm run | grep -q " build"; then
+              echo "Running npm run build"
+              npm run build --silent || true
+            else
+              echo "No build script detected — assuming static assets are in this folder"
+            fi
+            # Common build output folders: build/ or dist/
+            if [ -d nonprofit-website/src/build ]; then
+              echo "DEPLOY_DIR=nonprofit-website/src/build" >> $GITHUB_ENV
+            elif [ -d nonprofit-website/src/dist ]; then
+              echo "DEPLOY_DIR=nonprofit-website/src/dist" >> $GITHUB_ENV
+            else
+              echo "DEPLOY_DIR=nonprofit-website/src" >> $GITHUB_ENV
+            fi
+          else
+            echo "No package.json — treating folder as static site"
+            echo "DEPLOY_DIR=nonprofit-website/src" >> $GITHUB_ENV
+          fi
+
+      - name: Show deploy directory
+        run: |
+          echo "Deploying contents of: $DEPLOY_DIR"
+
+      - name: Deploy to Azure Static Web Apps
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_KIND_TREE_04171B810 }} # keep your existing secret name
+          action: "upload"
+          app_location: ${{ env.DEPLOY_DIR }}
+          api_location: ""
+          output_location: ""
+
+  close_pull_request_job:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    name: Close Pull Request Job
+    steps:
+      - name: Close Pull Request
+        id: closepullrequest
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          action: "close"

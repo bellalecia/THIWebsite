@@ -1,0 +1,196 @@
+/* CSS Variables for Typography System */
+:root {
+    /* Font Scale */
+    --font-xxl: 4rem;      /* Hero titles */
+    --font-xl: 3rem;       /* Major headings */
+    --font-lg: 2.5rem;     /* Section titles */
+    --font-md: 1.75rem;    /* Subsection headings */
+    --font-base: 1.25rem;  /* Body text */
+    --font-sm: 1.1rem;     /* Small text */
+    --font-xs: 0.9rem;     /* Footer, captions */
+
+    /* Font Weights */
+    --weight-black: 900;
+    --weight-bold: 700;
+    --weight-semi: 600;
+    --weight-medium: 500;
+    --weight-regular: 400;
+
+    /* Line Heights */
+    --line-tight: 1.2;     /* Headings */
+    --line-normal: 1.5;    /* Body text */
+    --line-loose: 1.8;     /* Large text blocks */
+
+    /* Letter Spacing */
+    --spacing-tight: -0.02em;
+    --spacing-normal: 0;
+    --spacing-wide: 0.05em;
+    --spacing-wider: 0.1em;
+
+    /* Colors */
+    --color-text-dark: #000;
+    --color-text-gray: #333;
+    --color-text-light: #666;
+    --color-accent: #D4AF37;
+}
+
+/* Base Typography */
+h1, .h1 {
+    font-size: var(--font-xl);
+    line-height: var(--line-tight);
+    font-weight: var(--weight-bold);
+    letter-spacing: var(--spacing-tight);
+    color: var(--color-text-dark);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+
+h2, .h2 {
+    font-size: var(--font-lg);
+    line-height: var(--line-tight);
+    font-weight: var(--weight-semi);
+    letter-spacing: var(--spacing-normal);
+    color: var(--color-text-dark);
+    margin-bottom: 1.25rem;
+}
+
+h3, .h3 {
+    font-size: var(--font-md);
+    line-height: var(--line-normal);
+    font-weight: var(--weight-semi);
+    letter-spacing: var(--spacing-normal);
+    color: var(--color-text-dark);
+    margin-bottom: 1rem;
+}
+
+h4, .h4 {
+    font-size: var(--font-base);
+    line-height: var(--line-normal);
+    font-weight: var(--weight-semi);
+    letter-spacing: var(--spacing-normal);
+    color: var(--color-text-dark);
+    margin-bottom: 0.75rem;
+}
+
+p {
+    font-size: var(--font-base);
+    line-height: var(--line-normal);
+    color: var(--color-text-gray);
+    margin-bottom: 1rem;
+}
+
+/* Special Text Styles */
+.section-title {
+    font-size: var(--font-lg);
+    font-weight: var(--weight-bold);
+    text-align: center;
+    color: var(--color-text-dark);
+    margin: 2rem 0;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.hero-title {
+    font-size: var(--font-xxl);
+    font-weight: var(--weight-black);
+    text-transform: uppercase;
+    letter-spacing: var(--spacing-wider);
+    margin-bottom: 1.5rem;
+    background: linear-gradient(45deg, #fff, var(--color-accent));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+    font-size: var(--font-md);
+    line-height: var(--line-loose);
+    font-weight: var(--weight-medium);
+    margin-bottom: 2rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.program-title {
+    font-size: var(--font-md);
+    font-weight: var(--weight-semi);
+    letter-spacing: var(--spacing-normal);
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+}
+
+/* Decorative Elements */
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--color-accent);
+}
+
+/* Utility Classes */
+.text-sm {
+    font-size: var(--font-sm);
+}
+
+.text-xs {
+    font-size: var(--font-xs);
+}
+
+.text-accent {
+    color: var(--color-accent);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+    letter-spacing: var(--spacing-wide);
+}
+
+.font-black {
+    font-weight: var(--weight-black);
+}
+
+.font-bold {
+    font-weight: var(--weight-bold);
+}
+
+.font-medium {
+    font-weight: var(--weight-medium);
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+    :root {
+        --font-xxl: 3rem;
+        --font-xl: 2.5rem;
+        --font-lg: 2rem;
+        --font-md: 1.5rem;
+        --font-base: 1.15rem;
+        --font-sm: 1rem;
+        --font-xs: 0.875rem;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --font-xxl: 2.5rem;
+        --font-xl: 2rem;
+        --font-lg: 1.75rem;
+        --font-md: 1.35rem;
+        --font-base: 1.1rem;
+        --font-sm: 0.95rem;
+        --font-xs: 0.85rem;
+    }
+    
+    .hero-title {
+        letter-spacing: var(--spacing-wide);
+    }
+}

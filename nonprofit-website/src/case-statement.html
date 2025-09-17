@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Harambee Initiative - Case Statement</title>
+    <link rel="stylesheet" href="css/harambee.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/typography.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <style>
+        .flipbook-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        #pdf-container {
+            margin: 20px auto;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .controls {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .controls button {
+            padding: 10px 20px;
+            background-color: #ffc72c;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .controls button:hover {
+            background-color: #e6b325;
+        }
+        #page-num {
+            margin: 0 10px;
+            line-height: 40px;
+        }
+        canvas {
+            max-width: 100%;
+            height: auto !important;
+        }
+    </style>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <section class="flipbook-container">
+        <h1>Our Case Statement</h1>
+        <div class="controls">
+            <button id="prev">Previous</button>
+            <span id="page-num"></span>
+            <button id="next">Next</button>
+        </div>
+        <div id="pdf-container">
+            <canvas id="pdf-render"></canvas>
+        </div>
+    </section>
+
+    <div id="footer-placeholder" class="footer"></div>
+    
+    <script src="js/strings.js"></script>
+    <script src="js/includes.js"></script>
+    <script>
+        // Configure PDF.js worker
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+        let pdfDoc = null,
+            pageNum = 1,
+            pageRendering = false,
+            pageNumPending = null,
+            scale = 1.5,
+            canvas = document.querySelector('#pdf-render'),
+            ctx = canvas.getContext('2d');
+
+        // Load the PDF
+        pdfjsLib.getDocument('media/Case Statement.pdf').promise.then(function(pdfDoc_) {
+            console.log('Loading PDF...');
+        }).catch(function(error) {
+            console.error('Error loading PDF:', error);
+            alert('Could not load the PDF. Please make sure the file exists at the correct location.');
+        });
+            pdfDoc = pdfDoc_;
+            document.querySelector('#page-num').textContent = pageNum + ' of ' + pdfDoc.numPages;
+            renderPage(pageNum);
+
+        function renderPage(num) {
+            pageRendering = true;
+            pdfDoc.getPage(num).then(function(page) {
+                const viewport = page.getViewport({scale: scale});
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+
+                const renderContext = {
+                    canvasContext: ctx,
+                    viewport: viewport
+                };
+                
+                const renderTask = page.render(renderContext);
+
+                renderTask.promise.then(function() {
+                    pageRendering = false;
+                    if (pageNumPending !== null) {
+                        renderPage(pageNumPending);
+                        pageNumPending = null;
+                    }
+                });
+            });
+
+            document.querySelector('#page-num').textContent = num + ' of ' + pdfDoc.numPages;
+        }
+
+        function queueRenderPage(num) {
+            if (pageRendering) {
+                pageNumPending = num;
+            } else {
+                renderPage(num);
+            }
+        }
+
+        function onPrevPage() {
+            if (pageNum <= 1) {
+                return;
+            }
+            pageNum--;
+            queueRenderPage(pageNum);
+        }
+
+        function onNextPage() {
+            if (pageNum >= pdfDoc.numPages) {
+                return;
+            }
+            pageNum++;
+            queueRenderPage(pageNum);
+        }
+
+        document.querySelector('#prev').addEventListener('click', onPrevPage);
+        document.querySelector('#next').addEventListener('click', onNextPage);
+
+        // Add keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                onPrevPage();
+            } else if (e.key === 'ArrowRight') {
+                onNextPage();
+            }
+        });
+    </script>
+</body>
+</html>

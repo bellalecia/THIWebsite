@@ -5,30 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="site-title"></title>
     <link rel="stylesheet" href="css/harambee.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/typography.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="logo">
-            <div class="logo-icon">🏠</div>
-            <div class="logo-text" id="nav-logo"></div>
-        </div>
-        <ul class="nav-links">
-            <li><a href="index.html" id="nav-home"></a></li>
-            <li><a href="about.html" id="nav-about"></a></li>
-            <li><a href="get-involved.html" id="nav-get-involved"></a></li>
-            <li><a href="partner.html" class="active" id="nav-partner"></a></li>
-        </ul>
-    </nav>
+        <div id="header-placeholder"></div>
 
     <!-- PAGE CONTENT -->
-    <section class="donate-hero">
+    <section class="about-hero">
         <h1 id="partner-title"></h1>
-        <p id="partner-intro"></p>
+        <p class="about-intro" id="partner-intro"></p>
     </section>
 
     <section>
+        <h2 class="section-title" id="support-title" style="text-align:center;"></h2>
         <div class="donation-options" id="donation-options"></div>
+        <div class="contact-prompt" style="text-align: center; margin-top: 2rem;">
+            <p id="support-prompt" style="font-size: 1.2rem; margin-bottom: 0.5rem;"></p>
+            <p id="support-contact" style="font-weight: bold; margin-bottom: 0.2rem;"></p>
+            <p style="margin-top: 0;"><a href="mailto:admin@harambeenow.org" style="color: #D4AF37; text-decoration: none;">admin@harambeenow.org</a> | <span style="color: #D4AF37;">(630) 384-9070</span></p>
+        </div>
     </section>
 
     <section class="naming-opportunities">
@@ -43,34 +41,11 @@
         </div>
     </section>
 
-    <section class="board-section">
-        <h2 class="section-title" id="board-title"></h2>
-        <div class="board-grid" id="board-members"></div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3 id="footer-contact-title"></h3>
-                <p id="footer-contact-email"></p>
-                <p id="footer-contact-phone"></p>
-            </div>
-            <div class="footer-section">
-                <h3 id="footer-quick-title"></h3>
-                <div id="footer-quick-links"></div>
-            </div>
-            <div class="footer-section">
-                <h3 id="footer-follow-title"></h3>
-                <p id="footer-follow-links"></p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p id="footer-copyright"></p>
-        </div>
-    </footer>
+    <div id="footer-placeholder" class="footer"></div>
+    
     <script src="js/strings.js"></script>
     <script src="js/board-data-config.js"></script>
+    <script src="js/includes.js"></script>
     <script src="js/partner.js"></script>
 </body>
 </html>

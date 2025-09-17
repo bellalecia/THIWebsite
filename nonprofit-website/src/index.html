@@ -5,29 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="site-title"></title>
     <link rel="stylesheet" href="css/harambee.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/typography.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="logo">
-            <div class="logo-icon">🏠</div>
-            <div class="logo-text" id="nav-logo"></div>
-        </div>
-        <ul class="nav-links">
-            <li><a href="index.html" class="active" id="nav-home"></a></li>
-            <li><a href="about.html" id="nav-about"></a></li>
-            <li><a href="get-involved.html" id="nav-get-involved"></a></li>
-            <li><a href="partner.html" id="nav-partner"></a></li>
-        </ul>
-    </nav>
+    <div id="header-placeholder"></div>
 
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="hero-stars"></div>
         <div class="hero-content">
+            <div class="organization-name" style="font-size: 1.5rem; color: #333; margin-bottom: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px;">The Harambee Initiative, Inc.</div>
             <h1 class="hero-title" id="hero-title"></h1>
             <p class="hero-subtitle" id="hero-subtitle"></p>
-            <button class="cta-button" id="hero-button"></button>
+            <a href="about.html" class="cta-button" id="hero-button"></a>
         </div>
     </section>
 
@@ -45,33 +38,16 @@
     </section>
 
     <!-- Building Components -->
-    <section class="components-section">
+    <!-- <section class="components-section">
         <h2 class="section-title" id="components-title" style="text-align: center;"></h2>
         <div class="components-grid" id="components-items"></div>
-    </section>
+    </section> -->
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3 id="footer-contact-title"></h3>
-                <p id="footer-contact-email"></p>
-                <p id="footer-contact-phone"></p>
-            </div>
-            <div class="footer-section">
-                <h3 id="footer-quick-title"></h3>
-                <div id="footer-quick-links"></div>
-            </div>
-            <div class="footer-section">
-                <h3 id="footer-follow-title"></h3>
-                <p id="footer-follow-links"></p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p id="footer-copyright"></p>
-        </div>
-    </footer>
+    <div id="footer-placeholder" class="footer"></div>
+
     <script src="js/strings.js"></script>
+    <script src="js/includes.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
