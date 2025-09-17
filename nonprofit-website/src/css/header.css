@@ -22,7 +22,7 @@
     display: flex;
     position: relative;
     height: 100px;
-    margin-left: -2rem; /* Offset the nav padding to align with edge */
+    margin-left: -2rem;
 }
 
 .logo-img {
@@ -36,7 +36,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     position: absolute;
     top: 0;
-    left: 2rem; /* Match nav padding */
+    left: 2rem;
     transform: translateY(6px);
 }
 
@@ -78,7 +78,7 @@
     }
 
     .logo {
-        margin-left: -1rem;
+        margin-left: 0;
         position: absolute;
         left: 0;
     }
@@ -86,8 +86,9 @@
     .logo-img {
         width: 90px;
         height: 80px;
-        left: 1rem;
+        left: 2.5rem;
         position: absolute;
+        transform: translateY(0);
     }
 
     .hamburger {
