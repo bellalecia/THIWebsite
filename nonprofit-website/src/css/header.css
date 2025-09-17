@@ -1,7 +1,7 @@
 /* Header Styles */
 .nav {
     background: rgba(0, 0, 0, 0.95);
-    padding: 0 4rem;
+    padding: 0 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -17,15 +17,12 @@
     overflow: visible; /* Allow logo to extend beyond header */
 }
 
-/* Add spacing for the nav links to account for logo */
-.nav-links {
-    margin-left: 140px;
-}
-
+/* Logo styles */
 .logo {
     display: flex;
     position: relative;
     height: 100px;
+    margin-left: 0;
 }
 
 .logo-img {
@@ -39,7 +36,52 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     position: absolute;
     top: 0;
+    left: 0;
     transform: translateY(6px);
+}
+
+/* Navigation links */
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    margin-left: auto;
+    padding-left: 140px;
+}
+
+/* Mobile styles */
+@media screen and (max-width: 768px) {
+    .nav {
+        padding: 0 1rem;
+        height: auto;
+        min-height: 70px;
+        flex-wrap: wrap;
+    }
+
+    .logo {
+        margin-left: -1rem; /* Align with edge of screen */
+    }
+
+    .logo-img {
+        width: 90px;
+        height: 80px;
+    }
+
+    .nav-links {
+        order: 2;
+        width: 100%;
+        justify-content: center;
+        padding: 1rem 0;
+        gap: 1rem;
+        flex-wrap: wrap;
+        background: rgba(0, 0, 0, 0.95);
+        margin-top: 10px;
+        padding-left: 0;
+    }
+
+    .nav-links a {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
 }
 
 .logo-img:hover {
