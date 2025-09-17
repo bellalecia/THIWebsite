@@ -188,15 +188,6 @@
         <button onclick="refreshMembers()" class="btn-secondary">🔄 Refresh List</button>
     </div>
 
-    <!-- Configuration Section -->
-    <div class="admin-section">
-        <h2>⚙️ Configuration</h2>
-        <p><strong>Data Source:</strong> Azure Blob Storage</p>
-        <p><strong>Website Integration:</strong> Real-time updates</p>
-        <p><strong>Last Updated:</strong> <span id="lastUpdated">Loading...</span></p>
-        <button onclick="downloadBackup()" class="btn-secondary">💾 Download Backup</button>
-    </div>
-
     <script>
         // Configuration - Update this with your Azure Function URL after deployment
         const API_BASE_URL = 'https://harambee-board-api.azurewebsites.net/api/board-members';
@@ -227,7 +218,6 @@
                 
                 currentMembers = await response.json();
                 displayMembers();
-                document.getElementById('lastUpdated').textContent = new Date().toLocaleString();
                 hideStatus();
                 
             } catch (error) {
@@ -379,19 +369,6 @@
 
         function refreshMembers() {
             loadMembers();
-        }
-
-        function downloadBackup() {
-            const jsonData = JSON.stringify(currentMembers, null, 2);
-            const blob = new Blob([jsonData], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `board-members-backup-${new Date().toISOString().split('T')[0]}.json`;
-            a.click();
-            URL.revokeObjectURL(url);
-            
-            showStatus('Backup downloaded successfully', 'success');
         }
 
         function showStatus(message, type) {
