@@ -54,7 +54,7 @@ function loadIncludes() {
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 The Harambee Initiative, Inc. | Tax ID: 99-0898227</p>
+            <p class="copyright-text">&copy; 2024 The Harambee Initiative, Inc. | Tax ID: 99-0898227</p>
         </div>
     `;
 
