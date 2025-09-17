@@ -36,17 +36,24 @@
             display: block;
             background-color: white;
         }
+        .flipbook-container {
+            position: relative;
+        }
         .controls {
-            margin: 20px 0 0 0;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: -60px;
+            right: -60px;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            gap: 20px;
+            pointer-events: none;
         }
         .controls button {
             width: 40px;
             height: 40px;
-            background-color: #ffc72c;
+            background-color: rgb(255, 199, 44);
             border: none;
             border-radius: 50%;
             cursor: pointer;
@@ -54,14 +61,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background-color 0.2s ease;
+            transition: all 0.2s ease;
+            pointer-events: auto;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
         .controls button:hover {
-            background-color: #e6b325;
-        }
-        #page-num {
-            font-size: 16px;
-            color: #666;
+            background-color: rgb(230, 179, 37);
+            transform: scale(1.1);
         }
         canvas {
             max-width: 100%;
@@ -95,9 +101,9 @@
                 <canvas id="pdf-render"></canvas>
             </div>
             <div class="controls">
-                <button id="prev">&lt;</button>
-                <span id="page-num"></span>
-                <button id="next">&gt;</button>
+                <button id="prev"><i class="fas fa-chevron-left"></i></button>
+                <button id="next"><i class="fas fa-chevron-right"></i></button>
+            </div>
             </div>
         </div>
     </section>
@@ -146,7 +152,6 @@
         pdfjsLib.getDocument('./media/Case Statement.pdf').promise.then(function(pdfDoc_) {
             console.log('PDF loaded successfully');
             pdfDoc = pdfDoc_;
-            document.querySelector('#page-num').textContent = pageNum + ' of ' + pdfDoc.numPages;
             renderPage(pageNum);
         }).catch(function(error) {
             console.error('Error loading PDF:', error);
@@ -182,7 +187,6 @@
                 });
             });
 
-            document.querySelector('#page-num').textContent = num + ' of ' + pdfDoc.numPages;
         }
 
         function queueRenderPage(num) {
