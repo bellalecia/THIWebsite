@@ -444,6 +444,22 @@
             text-align: center;
         }
 
+        .video-container {
+            position: relative;
+            padding-bottom: 45%; /* Aspect ratio for width/height */
+            height: 0;
+            max-width: 800px;
+            max-height: 400px; /* Maximum height on larger screens */
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        @media screen and (min-width: 1200px) {
+            .video-container {
+                padding-bottom: 400px; /* Fixed height on larger screens */
+            }
+        }
+
         .video-placeholder {
             background: #000;
             height: 300px;
