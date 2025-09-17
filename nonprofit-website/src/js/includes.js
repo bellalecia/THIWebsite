@@ -5,6 +5,11 @@ function loadIncludes() {
             <div class="logo">
                 <img src="media/THI Logo.jpg" alt="The Harambee Initiative Logo" class="logo-img">
             </div>
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
@@ -60,6 +65,23 @@ function loadIncludes() {
     // Add active class to current page
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     document.querySelector(`a[href="${currentPage}"]`)?.classList.add('active');
+
+    // Handle hamburger menu
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+    });
+
+    // Close menu when clicking a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+        });
+    });
 }
 
 // Run when the page loads

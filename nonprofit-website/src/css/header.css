@@ -48,41 +48,89 @@
     padding-left: 140px;
 }
 
+/* Hamburger menu button */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: auto;
+}
+
+.hamburger span {
+    width: 30px;
+    height: 3px;
+    background: #D4AF37;
+    border-radius: 10px;
+    transition: all 0.3s linear;
+}
+
 /* Mobile styles */
 @media screen and (max-width: 768px) {
     .nav {
         padding: 0 1rem;
-        height: auto;
-        min-height: 70px;
-        flex-wrap: wrap;
+        height: 70px;
     }
 
     .logo {
-        margin-left: -1rem; /* Align with edge of screen */
+        margin-left: -1rem;
     }
 
     .logo-img {
         width: 90px;
         height: 80px;
+        left: 1rem;
+    }
+
+    .hamburger {
+        display: flex;
+        z-index: 1001;
     }
 
     .nav-links {
-        order: 2;
+        position: fixed;
+        top: 70px;
+        right: -100%;
         width: 100%;
-        justify-content: center;
-        padding: 1rem 0;
-        gap: 1rem;
-        flex-wrap: wrap;
+        height: auto;
+        flex-direction: column;
         background: rgba(0, 0, 0, 0.95);
-        margin-top: 10px;
-        padding-left: 0;
+        padding: 1rem 0;
+        transition: right 0.3s ease-in-out;
+        margin: 0;
+        text-align: center;
+    }
+
+    .nav-links.active {
+        right: 0;
     }
 
     .nav-links a {
-        font-size: 0.9rem;
-        padding: 0.5rem;
+        font-size: 1.1rem;
+        padding: 1rem;
+        width: 100%;
+        display: block;
+    }
+
+    /* Animation for hamburger menu */
+    .hamburger.active span:nth-child(1) {
+        transform: translateY(11px) rotate(45deg);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: translateY(-11px) rotate(-45deg);
     }
 }
+
 
 .logo-img:hover {
     opacity: 0.9;
