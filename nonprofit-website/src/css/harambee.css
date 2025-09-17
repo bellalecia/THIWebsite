@@ -453,17 +453,29 @@
 
         .video-container {
             position: relative;
-            padding-bottom: 45%; /* Aspect ratio for width/height */
+            padding-bottom: 45%;
             height: 0;
+            width: 100%;
             max-width: 800px;
-            max-height: 400px; /* Maximum height on larger screens */
+            max-height: 400px;
             margin: 0 auto;
             overflow: hidden;
         }
 
+        @media screen and (max-width: 768px) {
+            .video-section {
+                padding: 1rem 0.5rem;
+            }
+            .video-container {
+                width: 95%;
+                padding-bottom: 65%;
+                max-height: none;
+            }
+        }
+
         @media screen and (min-width: 1200px) {
             .video-container {
-                padding-bottom: 400px; /* Fixed height on larger screens */
+                padding-bottom: 400px;
             }
         }
 
