@@ -211,17 +211,17 @@
     display: inline-flex;
     align-items: center;
     padding: 1rem 1.5rem;
-    background: #f8f9fa;
-    border: 2px solid #1a73e8;
+    background: transparent;
+    border: 2px solid #D4AF37;
     border-radius: 8px;
-    color: #1a73e8;
+    color: #D4AF37;
     text-decoration: none;
     font-weight: 500;
     transition: all 0.3s ease;
 }
 
 .program-link:hover {
-    background: #1a73e8;
+    background: #D4AF37;
     color: white;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);

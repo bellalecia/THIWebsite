@@ -1,13 +1,17 @@
 .program-link {
     display: inline-block;
-    color: #1a73e8;
+    color: #D4AF37 !important;
     text-decoration: none;
     margin-top: 1rem;
     font-size: 0.9rem;
-    transition: color 0.3s ease;
+    padding: 0.5rem 1rem;
+    border: 2px solid #D4AF37;
+    border-radius: 4px;
+    transition: all 0.3s ease;
 }
 
 .program-link:hover {
-    color: #1557b0;
-    text-decoration: underline;
+    color: white !important;
+    background-color: #D4AF37;
+    text-decoration: none;
 }
