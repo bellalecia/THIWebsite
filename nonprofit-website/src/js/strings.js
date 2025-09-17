@@ -99,8 +99,7 @@ partner: {
     title: "Partner with Us",
     intro: "Join us in building a $10 million transformative community hub that will serve DuPage County for generations to come.",
     donationOptions: [
-        { title: "One-Time Donation", text: "Make a direct impact with a one-time contribution to our capital campaign." },
-        { title: "Monthly Giving", text: "Provide sustained support through monthly contributions to our programs." },
+        { title: "Donations", text: "Please contact us to discuss donation opportunities." },
         { title: "Corporate Partnership", text: "Partner with us for community impact and corporate social responsibility." }
     ],
     namingTitle: "Naming Opportunities",
