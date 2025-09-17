@@ -169,13 +169,29 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .hero-subtitle {
-            font-size: 1rem;
-            margin-bottom: 2rem;
-            white-space: nowrap;
+        .hero-section {
             text-align: center;
-            display: inline-block;
-            min-width: max-content;
+            padding: 2rem 1rem;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .hero-subtitle {
+                font-size: 1rem;
+                padding: 0 15px;
+            }
         }
 
         .cta-button {
