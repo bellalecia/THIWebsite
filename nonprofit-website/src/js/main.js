@@ -24,7 +24,11 @@ document.getElementById('impact-stats').innerHTML = impactStats;
 
 document.getElementById('components-title').textContent = STRINGS.components.title;
 const componentsItems = STRINGS.components.items.map(item =>
-    `<div class="component-card"><h3>${item.title}</h3><p>${item.text}</p><div class="component-cost">${item.cost}</div></div>`
+    `<div class="component-card">
+        <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem;">${item.title}</h3>
+        <p style="font-size: 1.1rem;">${item.text}</p>
+        <div class="component-cost" style="font-size: 1rem; margin-top: 0.5rem;">${item.cost}</div>
+    </div>`
 ).join('');
 document.getElementById('components-items').innerHTML = componentsItems;
     }, 100); // Small delay to ensure includes are loaded

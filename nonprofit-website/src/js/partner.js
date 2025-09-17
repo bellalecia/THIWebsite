@@ -12,10 +12,17 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('partner-title').textContent = STRINGS.partner.title;
         document.getElementById('partner-intro').textContent = STRINGS.partner.intro;
 
+        // Set support section title
+        document.getElementById('support-title').textContent = STRINGS.partner.waysToSupport.title;
+
         // Set donation options
         document.getElementById('donation-options').innerHTML = STRINGS.partner.donationOptions.map(opt =>
-            `<div class="donation-card"><h3>${opt.title}</h3><p>${opt.text}</p></div>`
+            `<div class="donation-card"><h3 style="color: #D4AF37;">${opt.title}</h3><p>${opt.text}</p></div>`
         ).join('');
+
+        // Set support prompt text
+        document.getElementById('support-prompt').textContent = STRINGS.partner.waysToSupport.prompt;
+        document.getElementById('support-contact').textContent = STRINGS.partner.waysToSupport.contactLabel;
 
         // Set naming opportunities
         document.getElementById('naming-title').textContent = STRINGS.partner.namingTitle;

@@ -32,10 +32,10 @@ const STRINGS = {
     impact: {
         title: "Our Impact Goals",
         stats: [
-            { number: "50,000+", label: "Families Facing Food Insecurity" },
+            { number: "500+", label: "Families to Receive Monthly Food Support" },
             { number: "$10M", label: "Campaign Goal" },
-            { number: "23,000", label: "Children Under 5 Without Childcare Access" },
-            { number: "33%", label: "Adults Lacking Digital Skills" }
+            { number: "200+", label: "Youth to Engage in STEAM Learning" },
+            { number: "100+", label: "Adults to Gain Career-Ready Skills" }
         ]
     },
     components: {
@@ -97,11 +97,11 @@ const STRINGS = {
 },
 partner: {
     title: "Partner with Us",
-    intro: "Collaborate with The Harambee Initiative to create lasting change. Explore donation options, naming opportunities, and programming collaborations.",
+    intro: "Join us in building a $10 million transformative community hub that will serve DuPage County for generations to come.",
     donationOptions: [
-        { title: "One-Time Gift", text: "Support our mission with a single donation." },
-        { title: "Monthly Giving", text: "Become a sustaining supporter with recurring gifts." },
-        { title: "Major Gifts", text: "Make a significant impact through major contributions." }
+        { title: "One-Time Donation", text: "Make a direct impact with a one-time contribution to our capital campaign." },
+        { title: "Monthly Giving", text: "Provide sustained support through monthly contributions to our programs." },
+        { title: "Corporate Partnership", text: "Partner with us for community impact and corporate social responsibility." }
     ],
     namingTitle: "Naming Opportunities",
     naming: [
