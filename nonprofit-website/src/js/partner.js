@@ -20,22 +20,40 @@ document.getElementById('download-btn').textContent = STRINGS.partner.downloadBt
 // Board Section
 document.getElementById('board-title').textContent = STRINGS.about.boardTitle;
 
-// Load board members dynamically from JSON
+// Load board members dynamically from Azure Blob Storage or fallback sources
 async function loadBoardMembers() {
     try {
-        const response = await fetch('data/board.json');
-        if (!response.ok) throw new Error('Failed to load board data');
-        const boardMembers = await response.json();
+        // Try dynamic data first
+        const boardData = await BoardDataAPI.fetchBoardMembers();
         
-        document.getElementById('board-members').innerHTML = boardMembers.map(member =>
-            `<div class="board-member"><div class="member-name">${member.name}</div><div class="member-title">${member.title}</div></div>`
-        ).join('');
+        if (boardData && boardData.length > 0) {
+            // Use dynamic data from Azure Blob Storage
+            renderBoardMembers(boardData, 'Azure Blob Storage');
+            return;
+        }
+
+        // Final fallback to static data
+        renderBoardMembers(STRINGS.about.boardMembers, 'Static Data');
+
     } catch (error) {
-        console.warn('Failed to load board members from JSON, using fallback data:', error);
-        // Fallback to static data if JSON fails to load
-        document.getElementById('board-members').innerHTML = STRINGS.about.boardMembers.map(member =>
-            `<div class="board-member"><div class="member-name">${member.name}</div><div class="member-title">${member.title}</div></div>`
-        ).join('');
+        console.warn('Error loading board members:', error);
+        // Use static data as final fallback
+        renderBoardMembers(STRINGS.about.boardMembers, 'Static Data (Error Fallback)');
+    }
+}
+
+// Render board members and show data source
+function renderBoardMembers(boardMembers, dataSource) {
+    document.getElementById('board-members').innerHTML = boardMembers.map(member =>
+        `<div class="board-member">
+            <div class="member-name">${member.name}</div>
+            <div class="member-title">${member.title}</div>
+        </div>`
+    ).join('');
+    
+    // Add a small indicator of data source (you can remove this later)
+    if (SHAREPOINT_CONFIG.debug) {
+        console.log(`Board members loaded from: ${dataSource}`, boardMembers);
     }
 }
 

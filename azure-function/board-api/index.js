@@ -1,4 +1,4 @@
-const { BlobServiceClient } = require('@azure/storage-blob');
+const { BlobServiceClient, StorageSharedKeyCredential } = require('@azure/storage-blob');
 
 // Configuration - Set these in Azure Function App Settings
 const STORAGE_ACCOUNT_NAME = process.env.STORAGE_ACCOUNT_NAME || 'harambeedata';
@@ -9,12 +9,10 @@ const BLOB_NAME = process.env.BLOB_NAME || 'board-data.json';
 // Initialize Blob Service Client
 let blobServiceClient;
 if (STORAGE_ACCOUNT_KEY) {
+    const sharedKeyCredential = new StorageSharedKeyCredential(STORAGE_ACCOUNT_NAME, STORAGE_ACCOUNT_KEY);
     blobServiceClient = new BlobServiceClient(
         `https://${STORAGE_ACCOUNT_NAME}.blob.core.windows.net`,
-        {
-            accountName: STORAGE_ACCOUNT_NAME,
-            accountKey: STORAGE_ACCOUNT_KEY
-        }
+        sharedKeyCredential
     );
 }
 
@@ -127,7 +125,16 @@ async function handlePost(context, blobClient, newMember) {
     }
 
     // Generate new ID
-    const newId = members.length > 0 ? Math.max(...members.map(m => m.id)) + 1 : 1;
+    const existingIds = members.map(m => {
+        if (typeof m.id === 'string' && m.id.startsWith('member-')) {
+            return parseInt(m.id.replace('member-', ''));
+        } else if (typeof m.id === 'number') {
+            return m.id;
+        }
+        return 0;
+    }).filter(id => !isNaN(id));
+    
+    const newId = existingIds.length > 0 ? Math.max(...existingIds) + 1 : 1;
     
     // Add new member
     const memberToAdd = {
@@ -140,7 +147,8 @@ async function handlePost(context, blobClient, newMember) {
 
     // Save back to blob
     const jsonContent = JSON.stringify(members, null, 2);
-    await blobClient.upload(jsonContent, jsonContent.length, {
+    const blockBlobClient = blobClient.getBlockBlobClient();
+    await blockBlobClient.upload(jsonContent, jsonContent.length, {
         blobHTTPHeaders: { blobContentType: 'application/json' }
     });
 
@@ -184,7 +192,8 @@ async function handlePut(context, blobClient, memberId, updatedData) {
 
         // Save back to blob
         const jsonContent = JSON.stringify(members, null, 2);
-        await blobClient.upload(jsonContent, jsonContent.length, {
+        const blockBlobClient = blobClient.getBlockBlobClient();
+        await blockBlobClient.upload(jsonContent, jsonContent.length, {
             blobHTTPHeaders: { blobContentType: 'application/json' }
         });
 
@@ -226,7 +235,8 @@ async function handleDelete(context, blobClient, memberId) {
 
         // Save back to blob
         const jsonContent = JSON.stringify(members, null, 2);
-        await blobClient.upload(jsonContent, jsonContent.length, {
+        const blockBlobClient = blobClient.getBlockBlobClient();
+        await blockBlobClient.upload(jsonContent, jsonContent.length, {
             blobHTTPHeaders: { blobContentType: 'application/json' }
         });
 
