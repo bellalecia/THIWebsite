@@ -1,17 +1,87 @@
 [
   {
     "id": "member-1",
-    "name": "Test 1",
-    "title": "President"
+    "name": "Rev. Conitras M. Houston Dickens",
+    "title": "Board Chair"
   },
   {
     "id": "member-2",
-    "name": "John Smith",
-    "title": "Vice President"
+    "name": "Mr. Joseph Proctor",
+    "title": "Vice Chair"
   },
   {
     "id": "member-3",
-    "name": "Mary Johnson",
-    "title": "Treasurer"
+    "name": "Dr. Connie Brown",
+    "title": "Chief Financial Officer"
+  },
+  {
+    "id": "member-4",
+    "name": "Mrs. Marcia Gordon Preston",
+    "title": "Chief Development Officer"
+  },
+  {
+    "id": "member-5",
+    "name": "Ms. Alecia Bell",
+    "title": "Board Member\r\nMicrosoft Change Agent"
+  },
+  {
+    "id": "member-6",
+    "name": "Mrs. Nancy Covington-Beal",
+    "title": "Board Member"
+  },
+  {
+    "id": "member-7",
+    "name": "Rev. Raymondo Brady",
+    "title": "Board Member"
+  },
+  {
+    "id": "member-8",
+    "name": "Ms. KaTreena Cochren",
+    "title": "Board Member"
+  },
+  {
+    "id": "member-9",
+    "name": "Mr. Dan Crane",
+    "title": "Board Member"
+  },
+  {
+    "id": "member-10",
+    "name": "Ms. Brandi Efiom",
+    "title": "Board Member"
+  },
+  {
+    "id": "member-11",
+    "name": "Mr. Matt Gambs",
+    "title": "Board Member"
+  },
+  {
+    "id": "member-12",
+    "name": "Mr. Greg Hart",
+    "title": "Board Member"
+  },
+  {
+    "id": "member-13",
+    "name": "Mr. Ken Jackson",
+    "title": "Board Member"
+  },
+  {
+    "id": "member-14",
+    "name": "Dr. Natalie Johnson",
+    "title": "Board Member"
+  },
+  {
+    "id": "member-15",
+    "name": "Mr. Walter Johnson",
+    "title": "Board Member"
+  },
+  {
+    "id": "member-16",
+    "name": "Dr. Leatha Ware",
+    "title": "Board Member"
+  },
+  {
+    "id": "admin-1",
+    "name": "TaKeena Cochren",
+    "title": "Administrator"
   }
-]
+] 

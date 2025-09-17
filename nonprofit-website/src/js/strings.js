@@ -8,7 +8,7 @@ const STRINGS = {
     },
     hero: {
         title: "TOGETHER WE SOAR",
-        subtitle: "A Safe Gathering Space for Physical, Mental, Emotional, and Spiritual Well-Being",
+        subtitle: "A Safe Gathering Space for Physical, Mental, Emotional, and Spiritual Well-Being", // now one line
         button: "Learn More"
     },
     mission: {
@@ -32,10 +32,10 @@ const STRINGS = {
     impact: {
         title: "Our Impact Goals",
         stats: [
-            { number: "500+", label: "Families to Receive Monthly Food Support" },
+            { number: "0,000+", label: "Families Facing Monthly Food Insecurity" },
             { number: "$10M", label: "Campaign Goal" },
-            { number: "200+", label: "Youth to Engage in STEAM Learning Annually" },
-            { number: "500+", label: "Adults to Gain Career-Ready Skills" }
+            { number: "23,00+", label: "Children Under 5 Without Childcare Access" },
+            { number: "33%", label: "Adults Lacking Digital Skills" }
         ]
     },
     components: {
@@ -104,9 +104,15 @@ partner: {
     ],
     namingTitle: "Naming Opportunities",
     naming: [
-        { amount: "$1M", label: "Main Building" },
-        { amount: "$500K", label: "Multipurpose Space" },
-        { amount: "$250K", label: "Early Learning Center" }
+        { amount: "$10M", label: "The Building" },
+        { amount: "$3M", label: "The Multipurpose Space" },
+        { amount: "$3M", label: "The Early Learning Center" },
+        { amount: "$2M", label: "The Food Pantry Space" },
+        { amount: "$1.5M", label: "The Glass Atrium" },
+        { amount: "$1M", label: "The Rooftop Garden Space" },
+        { amount: "$500K", label: "The Playground" },
+        { amount: "$500K", label: "The Youth Activity Space" },
+        { amount: "$100K", label: "The Classroom/Vendor Spaces" }
     ],
     collaborationTitle: "Programming Collaborations",
     collaborations: [
