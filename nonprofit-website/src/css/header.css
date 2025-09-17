@@ -87,7 +87,7 @@
     .logo-img {
         width: 90px;
         height: 80px;
-        left: 1.8rem; /* Moved slightly to the left */
+        left: 1.5rem; /* Moved slightly to the left */
         position: absolute;
         transform: translateY(0);
     }

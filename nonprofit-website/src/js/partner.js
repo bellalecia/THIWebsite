@@ -50,9 +50,10 @@ document.addEventListener('DOMContentLoaded', function() {
             // Create a second button for downloading the Case Statement PDF
             const casePdfRelative = 'media/Case Statement.pdf';
             const casePdfUrl = casePdfRelative.replace(/ /g, '%20');
-            const caseBtn = document.createElement('button');
+            const caseBtn = document.createElement('a');
+            caseBtn.href = '#';
             caseBtn.id = 'download-case-btn';
-            caseBtn.className = downloadBtn.className || 'download-btn';
+            caseBtn.className = 'download-btn';  // Use the same class as the first button
             caseBtn.textContent = 'Download Case Statement';
             caseBtn.setAttribute('aria-label', 'Download Case Statement PDF');
             caseBtn.style.marginLeft = '8px';
@@ -66,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 try {
                     const a = document.createElement('a');
                     a.href = casePdfUrl;
-                    a.download = 'Case_Statement.pdf';
+                    a.download = 'THI_Case_Statement.pdf';
                     document.body.appendChild(a);
                     a.click();
                     a.remove();
