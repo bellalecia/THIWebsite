@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Board Members Admin - The Harambee Initiative</title>
+    <title>Content Admin - The Harambee Initiative</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -137,16 +137,74 @@
             padding: 20px;
             color: #666;
         }
+        .opportunity-card {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .opportunity-info {
+            flex-grow: 1;
+        }
+        
+        .opportunity-amount {
+            font-weight: bold;
+            color: #D4AF37;
+            font-size: 18px;
+        }
+        
+        .opportunity-label {
+            color: #2c5f41;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+        
+        .opportunity-description {
+            color: #6c757d;
+            font-size: 14px;
+            font-style: italic;
+        }
+        
+        .opportunity-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        
+        .status-available {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .status-unavailable {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .opportunity-actions {
+            display: flex;
+            gap: 5px;
+            flex-direction: column;
+        }
         
         @media (max-width: 768px) {
-            .member-card {
+            .member-card, .opportunity-card {
                 flex-direction: column;
                 align-items: flex-start;
             }
             
-            .member-actions {
+            .member-actions, .opportunity-actions {
                 margin-top: 10px;
                 width: 100%;
+                flex-direction: row;
             }
             
             button {
@@ -158,8 +216,8 @@
 </head>
 <body>
     <div class="header">
-        <h1>🏛️ Board Members Administration</h1>
-        <p>Manage The Harambee Initiative Board of Directors</p>
+        <h1>🏛️ Content Administration</h1>
+        <p>Manage The Harambee Initiative Website Content</p>
     </div>
 
     <div id="status" class="status"></div>
@@ -188,17 +246,62 @@
         <button onclick="refreshMembers()" class="btn-secondary">🔄 Refresh List</button>
     </div>
 
+    <!-- Naming Opportunities Management Section -->
+    <div class="admin-section">
+        <h2>💰 Naming Opportunities Management</h2>
+        
+        <!-- Add New Opportunity Section -->
+        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+            <h3>➕ Add New Naming Opportunity</h3>
+            <form id="addOpportunityForm">
+                <div class="form-group">
+                    <label for="newAmount">Amount *</label>
+                    <input type="text" id="newAmount" required placeholder="e.g., $1M, $500K, $100K">
+                </div>
+                <div class="form-group">
+                    <label for="newLabel">Opportunity Name *</label>
+                    <input type="text" id="newLabel" required placeholder="e.g., The Building, The Playground">
+                </div>
+                <div class="form-group">
+                    <label for="newDescription">Description (Optional)</label>
+                    <input type="text" id="newDescription" placeholder="Additional details about this opportunity">
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="newAvailable" checked> Available for donation
+                    </label>
+                </div>
+                <button type="submit">Add Naming Opportunity</button>
+            </form>
+        </div>
+
+        <!-- Current Opportunities Section -->
+        <div>
+            <h3>📋 Current Naming Opportunities</h3>
+            <div id="opportunitiesLoadingMessage" class="loading">Loading naming opportunities...</div>
+            <div id="opportunitiesList"></div>
+            <button onclick="refreshOpportunities()" class="btn-secondary">🔄 Refresh Opportunities</button>
+        </div>
+    </div>
+
     <script>
         // Configuration - Update this with your Azure Function URL after deployment
         const API_BASE_URL = 'https://harambee-board-api.azurewebsites.net/api/board-members';
+        const OPPORTUNITIES_API_URL = 'https://harambee-board-api.azurewebsites.net/api/naming-opportunities';
         // For local development, use: 'http://localhost:7071/api/board-members'
         
         let currentMembers = [];
+        let currentOpportunities = [];
         let editingMember = null;
+        let editingOpportunity = null;
 
         // Load members on page load
         document.addEventListener('DOMContentLoaded', function() {
             loadMembers();
+            loadOpportunities();
+            
+            // Setup opportunity form handler
+            document.getElementById('addOpportunityForm').addEventListener('submit', handleAddOpportunity);
         });
 
         // Add member form submission
@@ -391,6 +494,264 @@
             div.textContent = text;
             return div.innerHTML;
         }
+
+        // ===== NAMING OPPORTUNITIES MANAGEMENT FUNCTIONS =====
+
+        async function loadOpportunities() {
+            const loadingMessage = document.getElementById('opportunitiesLoadingMessage');
+            const opportunitiesList = document.getElementById('opportunitiesList');
+            
+            try {
+                loadingMessage.style.display = 'block';
+                opportunitiesList.innerHTML = '';
+                
+                const response = await fetch(OPPORTUNITIES_API_URL);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                currentOpportunities = await response.json();
+                displayOpportunities();
+                
+            } catch (error) {
+                console.error('Error loading opportunities:', error);
+                showStatus('Error loading naming opportunities. Please check your connection and try again.', 'error');
+                opportunitiesList.innerHTML = '<p style="color: #dc3545; text-align: center;">Failed to load naming opportunities</p>';
+            } finally {
+                loadingMessage.style.display = 'none';
+            }
+        }
+
+        function displayOpportunities() {
+            const opportunitiesList = document.getElementById('opportunitiesList');
+            
+            if (currentOpportunities.length === 0) {
+                opportunitiesList.innerHTML = '<p style="text-align: center; color: #6c757d;">No naming opportunities found. Add one above to get started.</p>';
+                return;
+            }
+
+            // Sort opportunities by amount (descending)
+            const sortedOpportunities = [...currentOpportunities].sort((a, b) => {
+                const amountA = parseFloat(a.amount.replace(/[\$,KM]/g, '').replace('K', '000').replace('M', '000000'));
+                const amountB = parseFloat(b.amount.replace(/[\$,KM]/g, '').replace('K', '000').replace('M', '000000'));
+                return amountB - amountA;
+            });
+            
+            opportunitiesList.innerHTML = sortedOpportunities.map(opportunity => `
+                <div class="opportunity-card" data-id="${opportunity.id}">
+                    <div class="opportunity-info">
+                        <div class="opportunity-amount">${escapeHtml(opportunity.amount)}</div>
+                        <div class="opportunity-label">${escapeHtml(opportunity.label)}</div>
+                        ${opportunity.description ? `<div class="opportunity-description">${escapeHtml(opportunity.description)}</div>` : ''}
+                        <span class="opportunity-status ${opportunity.available ? 'status-available' : 'status-unavailable'}">
+                            ${opportunity.available ? 'Available' : 'Not Available'}
+                        </span>
+                    </div>
+                    <div class="opportunity-actions">
+                        <button onclick="editOpportunity(${opportunity.id})" class="btn-secondary">✏️ Edit</button>
+                        <button onclick="deleteOpportunity(${opportunity.id})" class="btn-danger">🗑️ Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function handleAddOpportunity(event) {
+            event.preventDefault();
+            
+            const amount = document.getElementById('newAmount').value.trim();
+            const label = document.getElementById('newLabel').value.trim();
+            const description = document.getElementById('newDescription').value.trim();
+            const available = document.getElementById('newAvailable').checked;
+
+            if (!amount || !label) {
+                showStatus('Please fill in all required fields.', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch(OPPORTUNITIES_API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        amount: amount,
+                        label: label,
+                        description: description,
+                        available: available
+                    })
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.error || 'Failed to add opportunity');
+                }
+
+                const newOpportunity = await response.json();
+                showStatus(`✅ Successfully added "${newOpportunity.label}"!`, 'success');
+                
+                // Reset form
+                document.getElementById('addOpportunityForm').reset();
+                document.getElementById('newAvailable').checked = true; // Reset checkbox to default
+                
+                // Reload opportunities
+                await loadOpportunities();
+
+            } catch (error) {
+                console.error('Error adding opportunity:', error);
+                showStatus(`❌ Error adding opportunity: ${error.message}`, 'error');
+            }
+        }
+
+        async function editOpportunity(id) {
+            const opportunity = currentOpportunities.find(o => o.id === id);
+            if (!opportunity) {
+                showStatus('Opportunity not found.', 'error');
+                return;
+            }
+
+            // Pre-fill the form with current values
+            document.getElementById('newAmount').value = opportunity.amount;
+            document.getElementById('newLabel').value = opportunity.label;
+            document.getElementById('newDescription').value = opportunity.description || '';
+            document.getElementById('newAvailable').checked = opportunity.available;
+            
+            // Change form to edit mode
+            editingOpportunity = id;
+            const form = document.getElementById('addOpportunityForm');
+            const submitButton = form.querySelector('button[type="submit"]');
+            submitButton.textContent = 'Update Opportunity';
+            submitButton.style.background = '#ffc107';
+            
+            // Add cancel button
+            if (!document.getElementById('cancelOpportunityEdit')) {
+                const cancelButton = document.createElement('button');
+                cancelButton.type = 'button';
+                cancelButton.id = 'cancelOpportunityEdit';
+                cancelButton.textContent = 'Cancel Edit';
+                cancelButton.className = 'btn-secondary';
+                cancelButton.onclick = cancelOpportunityEdit;
+                submitButton.parentNode.insertBefore(cancelButton, submitButton.nextSibling);
+            }
+            
+            // Scroll to form
+            form.scrollIntoView({ behavior: 'smooth' });
+            showStatus(`Editing "${opportunity.label}". Make changes and click Update.`, 'info');
+        }
+
+        function cancelOpportunityEdit() {
+            editingOpportunity = null;
+            
+            // Reset form
+            document.getElementById('addOpportunityForm').reset();
+            document.getElementById('newAvailable').checked = true;
+            
+            // Reset button
+            const submitButton = document.querySelector('#addOpportunityForm button[type="submit"]');
+            submitButton.textContent = 'Add Naming Opportunity';
+            submitButton.style.background = '#2c5f41';
+            
+            // Remove cancel button
+            const cancelButton = document.getElementById('cancelOpportunityEdit');
+            if (cancelButton) {
+                cancelButton.remove();
+            }
+            
+            hideStatus();
+        }
+
+        async function deleteOpportunity(id) {
+            const opportunity = currentOpportunities.find(o => o.id === id);
+            if (!opportunity) {
+                showStatus('Opportunity not found.', 'error');
+                return;
+            }
+
+            if (!confirm(`Are you sure you want to delete "${opportunity.label}"?\n\nThis action cannot be undone.`)) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`${OPPORTUNITIES_API_URL}/${id}`, {
+                    method: 'DELETE'
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.error || 'Failed to delete opportunity');
+                }
+
+                showStatus(`✅ Successfully deleted "${opportunity.label}"!`, 'success');
+                await loadOpportunities();
+
+            } catch (error) {
+                console.error('Error deleting opportunity:', error);
+                showStatus(`❌ Error deleting opportunity: ${error.message}`, 'error');
+            }
+        }
+
+        function refreshOpportunities() {
+            loadOpportunities();
+        }
+
+        // Modify the existing handleAddMember function to handle opportunity editing
+        const originalHandleAddMember = document.getElementById('addMemberForm')?.addEventListener;
+        
+        // Override the form submission handler to check if we're editing an opportunity
+        document.addEventListener('DOMContentLoaded', function() {
+            const opportunityForm = document.getElementById('addOpportunityForm');
+            if (opportunityForm) {
+                opportunityForm.addEventListener('submit', async function(event) {
+                    event.preventDefault();
+                    
+                    if (editingOpportunity) {
+                        // Handle update
+                        const amount = document.getElementById('newAmount').value.trim();
+                        const label = document.getElementById('newLabel').value.trim();
+                        const description = document.getElementById('newDescription').value.trim();
+                        const available = document.getElementById('newAvailable').checked;
+
+                        if (!amount || !label) {
+                            showStatus('Please fill in all required fields.', 'error');
+                            return;
+                        }
+
+                        try {
+                            const response = await fetch(`${OPPORTUNITIES_API_URL}/${editingOpportunity}`, {
+                                method: 'PUT',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    amount: amount,
+                                    label: label,
+                                    description: description,
+                                    available: available
+                                })
+                            });
+
+                            if (!response.ok) {
+                                const error = await response.json();
+                                throw new Error(error.error || 'Failed to update opportunity');
+                            }
+
+                            const updatedOpportunity = await response.json();
+                            showStatus(`✅ Successfully updated "${updatedOpportunity.label}"!`, 'success');
+                            
+                            cancelOpportunityEdit();
+                            await loadOpportunities();
+
+                        } catch (error) {
+                            console.error('Error updating opportunity:', error);
+                            showStatus(`❌ Error updating opportunity: ${error.message}`, 'error');
+                        }
+                    } else {
+                        // Handle add
+                        await handleAddOpportunity(event);
+                    }
+                });
+            }
+        });
     </script>
 </body>
 </html>

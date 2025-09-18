@@ -24,11 +24,10 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('support-prompt').textContent = STRINGS.partner.waysToSupport.prompt;
         document.getElementById('support-contact').textContent = STRINGS.partner.waysToSupport.contactLabel;
 
-        // Set naming opportunities
+        // Set naming opportunities title and load dynamic content
         document.getElementById('naming-title').textContent = STRINGS.partner.namingTitle;
-        document.getElementById('naming-grid').innerHTML = STRINGS.partner.naming.map(n =>
-            `<div class="naming-card"><div class="naming-amount">${n.amount}</div><div>${n.label}</div></div>`
-        ).join('');
+        // Load naming opportunities from API
+        NamingOpportunitiesAPI.displayNamingOpportunities('naming-grid');
 
         // Set download section
         document.getElementById('download-title').textContent = STRINGS.partner.downloadTitle;
