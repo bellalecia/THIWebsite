@@ -34,8 +34,8 @@ const STRINGS = {
         stats: [
             { number: "500+", label: "Families to Receive Monthly Food Support" },
             { number: "$10M", label: "Campaign Goal" },
-            { number: "200+", label: "Youth to Engage in STEAM Learning" },
-            { number: "100+%", label: "Adults to Gain Career-Ready Skills" }
+            { number: "200+", label: "Youth to Engage in STEAM Learning Annually" },
+            { number: "500+", label: "Adults to Gain Career-Ready Skills" }
         ]
     },
     components: {
