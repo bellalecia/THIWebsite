@@ -32,10 +32,10 @@ const STRINGS = {
     impact: {
         title: "Our Impact Goals",
         stats: [
-            { number: "0,000+", label: "Families Facing Monthly Food Insecurity" },
+            { number: "500+", label: "Families to Receive Monthly Food Support" },
             { number: "$10M", label: "Campaign Goal" },
-            { number: "23,00+", label: "Children Under 5 Without Childcare Access" },
-            { number: "33%", label: "Adults Lacking Digital Skills" }
+            { number: "200+", label: "Youth to Engage in STEAM Learning Annually" },
+            { number: "500+", label: "Adults to Gain Career-Ready Skills" }
         ]
     },
     components: {
