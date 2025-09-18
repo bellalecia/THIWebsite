@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Admin - The Harambee Initiative</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c5f41 0%, #4a7c59 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #2c5f41;
+        }
+        
+        input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        
+        button {
+            background: #2c5f41;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        
+        button:hover {
+            background: #1e3e2b;
+        }
+        
+        .btn-danger {
+            background: #dc3545;
+        }
+        
+        .btn-danger:hover {
+            background: #c82333;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+        }
+        
+        .btn-secondary:hover {
+            background: #545b62;
+        }
+        
+        .status {
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        
+        .loading {
+            text-align: center;
+            color: #6c757d;
+            padding: 20px;
+        }
+        
+        .member-card, .opportunity-card {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .member-info, .opportunity-info {
+            flex-grow: 1;
+        }
+        
+        .member-name {
+            font-weight: bold;
+            color: #2c5f41;
+            margin-bottom: 5px;
+        }
+        
+        .member-title {
+            color: #6c757d;
+        }
+        
+        .member-actions, .opportunity-actions {
+            display: flex;
+            gap: 5px;
+            flex-direction: column;
+        }
+        
+        .opportunity-amount {
+            font-weight: bold;
+            color: #D4AF37;
+            font-size: 18px;
+        }
+        
+        .opportunity-label {
+            color: #2c5f41;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+        
+        .opportunity-description {
+            color: #6c757d;
+            font-size: 14px;
+            font-style: italic;
+        }
+        
+        .opportunity-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        
+        .status-available {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .status-unavailable {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        /* Tab Styles */
+        .tabs-container {
+            margin-bottom: 20px;
+        }
+        
+        .tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-radius: 10px 10px 0 0;
+            overflow: hidden;
+            border: 1px solid #dee2e6;
+            border-bottom: none;
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            color: #6c757d;
+            transition: all 0.3s ease;
+            border-right: 1px solid #dee2e6;
+        }
+        
+        .tab:last-child {
+            border-right: none;
+        }
+        
+        .tab.active {
+            background: #2c5f41;
+            color: white;
+        }
+        
+        .tab:hover:not(.active) {
+            background: #e9ecef;
+            color: #495057;
+        }
+        
+        .tab-content {
+            display: none;
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 0 0 10px 10px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .member-card, .opportunity-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .member-actions, .opportunity-actions {
+                margin-top: 10px;
+                width: 100%;
+                flex-direction: row;
+            }
+            
+            button {
+                flex: 1;
+                margin-right: 5px;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                border-right: none;
+                border-bottom: 1px solid #dee2e6;
+            }
+            
+            .tab:last-child {
+                border-bottom: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🏛️ Content Administration</h1>
+        <p>Manage The Harambee Initiative Website Content</p>
+    </div>
+
+    <div id="status" class="status"></div>
+
+    <!-- Tabs Container -->
+    <div class="tabs-container">
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab(event, 'board-members-tab')">
+                👥 Board Members
+            </button>
+            <button class="tab" onclick="switchTab(event, 'naming-opportunities-tab')">
+                💰 Naming Opportunities
+            </button>
+        </div>
+
+        <!-- Board Members Tab Content -->
+        <div id="board-members-tab" class="tab-content active">
+            <h2>👥 Board Members Management</h2>
+            
+            <!-- Add New Member Section -->
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                <h3>➕ Add New Board Member</h3>
+                <form id="addMemberForm">
+                    <div class="form-group">
+                        <label for="newName">Full Name *</label>
+                        <input type="text" id="newName" required placeholder="Enter full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="newTitle">Title/Position *</label>
+                        <input type="text" id="newTitle" required placeholder="e.g., President, Vice President, Treasurer">
+                    </div>
+                    <button type="submit">Add Board Member</button>
+                </form>
+            </div>
+
+            <!-- Current Members Section -->
+            <div>
+                <h3>📋 Current Board Members</h3>
+                <div id="loadingMessage" class="loading">Loading board members...</div>
+                <div id="membersList"></div>
+                <button onclick="refreshMembers()" class="btn-secondary">🔄 Refresh List</button>
+            </div>
+        </div>
+
+        <!-- Naming Opportunities Tab Content -->
+        <div id="naming-opportunities-tab" class="tab-content">
+            <h2>💰 Naming Opportunities Management</h2>
+            
+            <!-- Add New Opportunity Section -->
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                <h3>➕ Add New Naming Opportunity</h3>
+                <form id="addOpportunityForm">
+                    <div class="form-group">
+                        <label for="newAmount">Amount *</label>
+                        <input type="text" id="newAmount" required placeholder="e.g., $1M, $500K, $100K">
+                    </div>
+                    <div class="form-group">
+                        <label for="newLabel">Opportunity Name *</label>
+                        <input type="text" id="newLabel" required placeholder="e.g., The Building, The Playground">
+                    </div>
+                    <div class="form-group">
+                        <label for="newDescription">Description (Optional)</label>
+                        <input type="text" id="newDescription" placeholder="Additional details about this opportunity">
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="newAvailable" checked> Available for donation
+                        </label>
+                    </div>
+                    <button type="submit">Add Naming Opportunity</button>
+                </form>
+            </div>
+
+            <!-- Current Opportunities Section -->
+            <div>
+                <h3>📋 Current Naming Opportunities</h3>
+                <div id="opportunitiesLoadingMessage" class="loading">Loading naming opportunities...</div>
+                <div id="opportunitiesList"></div>
+                <button onclick="refreshOpportunities()" class="btn-secondary">🔄 Refresh Opportunities</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching function
+        function switchTab(event, tabId) {
+            // Hide all tab content
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabId).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Shared status management functions
+        function showStatus(message, type = 'info') {
+            const statusDiv = document.getElementById('status');
+            if (!statusDiv) return;
+            
+            statusDiv.textContent = message;
+            statusDiv.className = `status ${type}`;
+            statusDiv.style.display = 'block';
+            
+            // Auto-hide success messages after 5 seconds
+            if (type === 'success') {
+                setTimeout(hideStatus, 5000);
+            }
+        }
+
+        function hideStatus() {
+            const statusDiv = document.getElementById('status');
+            if (statusDiv) {
+                statusDiv.style.display = 'none';
+            }
+        }
+
+        // Make functions available globally
+        window.showStatus = showStatus;
+        window.hideStatus = hideStatus;
+    </script>
+
+    <!-- Load admin modules -->
+    <script src="board-members.js"></script>
+    <script src="naming-opportunities.js"></script>
+</body>
+</html>

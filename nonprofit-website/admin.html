@@ -8,7 +8,20 @@
         body {
             font-family: Arial, sans-serif;
             max-width: 1200px;
-            margin: 0 auto;
+              </div>
+
+        <!-- Current Members Section -->
+        <div>
+            <h3>📋 Current Board Members</h3>
+            <div id="loadingMessage" class="loading">Loading board members...</div>
+            <div id="membersList"></div>
+            <button onclick="refreshMembers()" class="btn-secondary">🔄 Refresh List</button>
+        </div>
+        </div>
+
+        <!-- Naming Opportunities Tab Content -->
+        <div id="naming-opportunities-tab" class="tab-content">
+            <h2>💰 Naming Opportunities Management</h2>0 auto;
             padding: 20px;
             background-color: #f5f5f5;
         }
@@ -195,6 +208,59 @@
             flex-direction: column;
         }
         
+        /* Tab Styles */
+        .tabs-container {
+            margin-bottom: 20px;
+        }
+        
+        .tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-radius: 10px 10px 0 0;
+            overflow: hidden;
+            border: 1px solid #dee2e6;
+            border-bottom: none;
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            color: #6c757d;
+            transition: all 0.3s ease;
+            border-right: 1px solid #dee2e6;
+        }
+        
+        .tab:last-child {
+            border-right: none;
+        }
+        
+        .tab.active {
+            background: #2c5f41;
+            color: white;
+        }
+        
+        .tab:hover:not(.active) {
+            background: #e9ecef;
+            color: #495057;
+        }
+        
+        .tab-content {
+            display: none;
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 0 0 10px 10px;
+            padding: 25px;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
         @media (max-width: 768px) {
             .member-card, .opportunity-card {
                 flex-direction: column;
@@ -211,6 +277,19 @@
                 flex: 1;
                 margin-right: 5px;
             }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                border-right: none;
+                border-bottom: 1px solid #dee2e6;
+            }
+            
+            .tab:last-child {
+                border-bottom: none;
+            }
         }
     </style>
 </head>
@@ -222,28 +301,44 @@
 
     <div id="status" class="status"></div>
 
-    <!-- Add New Member Section -->
-    <div class="admin-section">
-        <h2>➕ Add New Board Member</h2>
-        <form id="addMemberForm">
-            <div class="form-group">
-                <label for="newName">Full Name *</label>
-                <input type="text" id="newName" required placeholder="Enter full name">
-            </div>
-            <div class="form-group">
-                <label for="newTitle">Title/Position *</label>
-                <input type="text" id="newTitle" required placeholder="e.g., President, Vice President, Treasurer">
-            </div>
-            <button type="submit">Add Board Member</button>
-        </form>
-    </div>
+    <!-- Tabs Container -->
+    <div class="tabs-container">
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab(event, 'board-members-tab')">
+                👥 Board Members
+            </button>
+            <button class="tab" onclick="switchTab(event, 'naming-opportunities-tab')">
+                💰 Naming Opportunities
+            </button>
+        </div>
 
-    <!-- Current Members Section -->
-    <div class="admin-section">
-        <h2>👥 Current Board Members</h2>
-        <div id="loadingMessage" class="loading">Loading board members...</div>
-        <div id="membersList"></div>
-        <button onclick="refreshMembers()" class="btn-secondary">🔄 Refresh List</button>
+        <!-- Board Members Tab Content -->
+        <div id="board-members-tab" class="tab-content active">
+            <h2>👥 Board Members Management</h2>
+        
+        <!-- Add New Member Section -->
+        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+            <h3>➕ Add New Board Member</h3>
+            <form id="addMemberForm">
+                <div class="form-group">
+                    <label for="newName">Full Name *</label>
+                    <input type="text" id="newName" required placeholder="Enter full name">
+                </div>
+                <div class="form-group">
+                    <label for="newTitle">Title/Position *</label>
+                    <input type="text" id="newTitle" required placeholder="e.g., President, Vice President, Treasurer">
+                </div>
+                <button type="submit">Add Board Member</button>
+            </form>
+        </div>
+
+        <!-- Current Members Section -->
+        <div>
+            <h3>� Current Board Members</h3>
+            <div id="loadingMessage" class="loading">Loading board members...</div>
+            <div id="membersList"></div>
+            <button onclick="refreshMembers()" class="btn-secondary">🔄 Refresh List</button>
+        </div>
     </div>
 
     <!-- Naming Opportunities Management Section -->
@@ -282,9 +377,31 @@
             <div id="opportunitiesList"></div>
             <button onclick="refreshOpportunities()" class="btn-secondary">🔄 Refresh Opportunities</button>
         </div>
+        </div>
     </div>
 
     <script>
+        // Tab switching function
+        function switchTab(event, tabId) {
+            // Hide all tab content
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabId).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
         // Configuration - Update this with your Azure Function URL after deployment
         const API_BASE_URL = 'https://harambee-board-api.azurewebsites.net/api/board-members';
         const OPPORTUNITIES_API_URL = 'https://harambee-board-api.azurewebsites.net/api/naming-opportunities';
