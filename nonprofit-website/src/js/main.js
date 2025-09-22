@@ -17,10 +17,8 @@ const missionCards = STRINGS.mission.cards.map(card =>
 document.getElementById('mission-cards').innerHTML = missionCards;
 
 document.getElementById('impact-title').textContent = STRINGS.impact.title;
-const impactStats = STRINGS.impact.stats.map(stat =>
-    `<div class="stat-card"><div class="stat-number">${stat.number}</div><div>${stat.label}</div></div>`
-).join('');
-document.getElementById('impact-stats').innerHTML = impactStats;
+// Load impact stats dynamically from API
+ImpactGoalsAPI.displayImpactGoals('impact-stats');
 
 document.getElementById('components-title').textContent = STRINGS.components.title;
 const componentsItems = STRINGS.components.items.map(item =>
