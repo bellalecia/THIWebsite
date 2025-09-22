@@ -7,9 +7,34 @@
     <link rel="stylesheet" href="admin.css">
 </head>
 <body>
+    <!-- Login Overlay -->
+    <div id="loginOverlay" class="login-overlay">
+        <div class="login-container">
+            <div class="login-header">
+                <h2>🔐 Admin Access</h2>
+                <p>Please enter the admin password to continue</p>
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required placeholder="Enter admin password">
+                </div>
+                <button type="submit">Access Admin Panel</button>
+                <div id="loginError" class="error-message"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Admin Content (hidden until logged in) -->
+    <div id="adminContent" class="admin-content" style="display: none;">
     <div class="header">
-        <h1>🏛️ Content Administration</h1>
-        <p>Manage The Harambee Initiative Website Content</p>
+        <div class="header-content">
+            <div>
+                <h1>🏛️ Content Administration</h1>
+                <p>Manage The Harambee Initiative Website Content</p>
+            </div>
+            <button id="logoutBtn" class="logout-btn">Logout</button>
+        </div>
     </div>
 
     <div id="status" class="status"></div>
@@ -172,6 +197,70 @@
         // Make functions available globally
         window.showStatus = showStatus;
         window.hideStatus = hideStatus;
+    </script>
+    </div> <!-- End admin content -->
+
+    <!-- Authentication Script -->
+    <script>
+        // Check if user is already logged in on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const isLoggedIn = localStorage.getItem('adminLoggedIn');
+            if (isLoggedIn === 'true') {
+                showAdminContent();
+            } else {
+                showLoginOverlay();
+            }
+        });
+
+        // Login form handler
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('loginError');
+            
+            try {
+                const response = await fetch('https://harambee-board-api.azurewebsites.net/api/auth-api', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ password })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    localStorage.setItem('adminLoggedIn', 'true');
+                    showAdminContent();
+                    errorDiv.textContent = '';
+                } else {
+                    errorDiv.textContent = result.message || 'Invalid password';
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                errorDiv.textContent = 'Network error. Please try again.';
+            }
+        });
+
+        // Logout handler
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            localStorage.removeItem('adminLoggedIn');
+            showLoginOverlay();
+        });
+
+        function showAdminContent() {
+            document.getElementById('loginOverlay').style.display = 'none';
+            document.getElementById('adminContent').style.display = 'block';
+        }
+
+        function showLoginOverlay() {
+            document.getElementById('loginOverlay').style.display = 'flex';
+            document.getElementById('adminContent').style.display = 'none';
+            // Clear form
+            document.getElementById('loginForm').reset();
+            document.getElementById('loginError').textContent = '';
+        }
     </script>
 
     <!-- Load admin modules -->
