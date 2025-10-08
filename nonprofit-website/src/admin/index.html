@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Admin - The Harambee Initiative</title>
+    <link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+    <!-- Login Overlay -->
+    <div id="loginOverlay" class="login-overlay">
+        <div class="login-container">
+            <div class="login-header">
+                <h2>🔐 Admin Access</h2>
+                <p>Please enter the admin password to continue</p>
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required placeholder="Enter admin password">
+                </div>
+                <button type="submit">Access Admin Panel</button>
+                <div id="loginError" class="error-message"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Admin Content (hidden until logged in) -->
+    <div id="adminContent" class="admin-content" style="display: none;">
+    <div class="header">
+        <div class="header-content">
+            <div>
+                <h1>🏛️ Content Administration</h1>
+                <p>Manage The Harambee Initiative Website Content</p>
+            </div>
+            <button id="logoutBtn" class="logout-btn">Logout</button>
+        </div>
+    </div>
+
+    <div id="status" class="status"></div>
+
+    <!-- Tabs Container -->
+    <div class="tabs-container">
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab(event, 'board-members-tab')">
+                👥 Board Members
+            </button>
+            <button class="tab" onclick="switchTab(event, 'naming-opportunities-tab')">
+                💰 Naming Opportunities
+            </button>
+            <button class="tab" onclick="switchTab(event, 'impact-goals-tab')">
+                📊 Impact Goals
+            </button>
+        </div>
+
+        <!-- Board Members Tab Content -->
+        <div id="board-members-tab" class="tab-content active">
+            <h2>👥 Board Members Management</h2>
+            
+            <!-- Add New Member Section -->
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                <h3>➕ Add New Board Member</h3>
+                <form id="addMemberForm">
+                    <div class="form-group">
+                        <label for="newName">Full Name *</label>
+                        <input type="text" id="newName" required placeholder="Enter full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="newTitle">Title/Position *</label>
+                        <input type="text" id="newTitle" required placeholder="e.g., President, Vice President, Treasurer">
+                    </div>
+                    <button type="submit">Add Board Member</button>
+                </form>
+            </div>
+
+            <!-- Current Members Section -->
+            <div>
+                <h3>📋 Current Board Members</h3>
+                <div id="loadingMessage" class="loading">Loading board members...</div>
+                <div id="membersList"></div>
+                <button onclick="refreshMembers()" class="btn-secondary">🔄 Refresh List</button>
+            </div>
+        </div>
+
+        <!-- Naming Opportunities Tab Content -->
+        <div id="naming-opportunities-tab" class="tab-content">
+            <h2>💰 Naming Opportunities Management</h2>
+            
+            <!-- Add New Opportunity Section -->
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                <h3>➕ Add New Naming Opportunity</h3>
+                <form id="addOpportunityForm">
+                    <div class="form-group">
+                        <label for="newAmount">Amount *</label>
+                        <input type="text" id="newAmount" required placeholder="e.g., $1M, $500K, $100K">
+                    </div>
+                    <div class="form-group">
+                        <label for="newLabel">Opportunity Name *</label>
+                        <input type="text" id="newLabel" required placeholder="e.g., The Building, The Playground">
+                    </div>
+                    <div class="form-group">
+                        <label for="newDescription">Description (Optional)</label>
+                        <input type="text" id="newDescription" placeholder="Additional details about this opportunity">
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="newAvailable" checked> Available for donation
+                        </label>
+                    </div>
+                    <button type="submit">Add Naming Opportunity</button>
+                </form>
+            </div>
+
+            <!-- Current Opportunities Section -->
+            <div>
+                <h3>📋 Current Naming Opportunities</h3>
+                <div id="opportunitiesLoadingMessage" class="loading">Loading naming opportunities...</div>
+                <div id="opportunitiesList"></div>
+                <button onclick="refreshOpportunities()" class="btn-secondary">🔄 Refresh Opportunities</button>
+            </div>
+        </div>
+
+        <!-- Impact Goals Tab Content -->
+        <div id="impact-goals-tab" class="tab-content">
+            <h2>📊 Impact Goals Management</h2>
+            
+            <!-- Add New Goal Section -->
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                <h3>➕ Add New Impact Goal</h3>
+                <form id="addGoalForm">
+                    <div class="form-group">
+                        <label for="newGoalNumber">Number/Metric *</label>
+                        <input type="text" id="newGoalNumber" required placeholder="e.g., 500+, $10M, 200+">
+                    </div>
+                    <div class="form-group">
+                        <label for="newGoalLabel">Goal Description *</label>
+                        <input type="text" id="newGoalLabel" required placeholder="e.g., Families to Receive Monthly Food Support">
+                    </div>
+                    <button type="submit">Add Impact Goal</button>
+                </form>
+            </div>
+
+            <!-- Current Goals Section -->
+            <div>
+                <h3>📋 Current Impact Goals</h3>
+                <div id="goalsLoadingMessage" class="loading">Loading impact goals...</div>
+                <div id="goalsList"></div>
+                <button onclick="refreshGoals()" class="btn-secondary">🔄 Refresh Goals</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching function
+        function switchTab(event, tabId) {
+            // Hide all tab content
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabId).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Shared status management functions
+        function showStatus(message, type = 'info') {
+            const statusDiv = document.getElementById('status');
+            if (!statusDiv) return;
+            
+            statusDiv.textContent = message;
+            statusDiv.className = `status ${type}`;
+            statusDiv.style.display = 'block';
+            
+            // Auto-hide success messages after 5 seconds
+            if (type === 'success') {
+                setTimeout(hideStatus, 5000);
+            }
+        }
+
+        function hideStatus() {
+            const statusDiv = document.getElementById('status');
+            if (statusDiv) {
+                statusDiv.style.display = 'none';
+            }
+        }
+
+        // Make functions available globally
+        window.showStatus = showStatus;
+        window.hideStatus = hideStatus;
+    </script>
+    </div> <!-- End admin content -->
+
+    <!-- Authentication Script -->
+    <script>
+        // Check if user is already logged in on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const isLoggedIn = localStorage.getItem('adminLoggedIn');
+            if (isLoggedIn === 'true') {
+                showAdminContent();
+            } else {
+                showLoginOverlay();
+            }
+        });
+
+        // Login form handler
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('loginError');
+            
+            try {
+                const response = await fetch('https://harambee-board-api.azurewebsites.net/api/auth-api', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ password })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    localStorage.setItem('adminLoggedIn', 'true');
+                    showAdminContent();
+                    errorDiv.textContent = '';
+                } else {
+                    errorDiv.textContent = result.message || 'Invalid password';
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                errorDiv.textContent = 'Network error. Please try again.';
+            }
+        });
+
+        // Logout handler
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            localStorage.removeItem('adminLoggedIn');
+            showLoginOverlay();
+        });
+
+        function showAdminContent() {
+            document.getElementById('loginOverlay').style.display = 'none';
+            document.getElementById('adminContent').style.display = 'block';
+        }
+
+        function showLoginOverlay() {
+            document.getElementById('loginOverlay').style.display = 'flex';
+            document.getElementById('adminContent').style.display = 'none';
+            // Clear form
+            document.getElementById('loginForm').reset();
+            document.getElementById('loginError').textContent = '';
+        }
+    </script>
+
+    <!-- Load admin modules -->
+    <script src="/admin/board-members.js"></script>
+    <script src="/admin/naming-opportunities.js"></script>
+    <script src="/admin/impact-goals.js"></script>
+</body>
+</html>
