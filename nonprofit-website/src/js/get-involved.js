@@ -15,7 +15,7 @@ document.getElementById('get-partners').innerHTML = STRINGS.getInvolved.partners
     `<div class="partner-logo">${l}</div>`
 ).join('');
 
-// Footer
+// Footer 1
 document.getElementById('footer-contact-title').textContent = STRINGS.footer.contactTitle;
 document.getElementById('footer-contact-email').textContent = STRINGS.footer.contactEmail;
 document.getElementById('footer-contact-phone').textContent = STRINGS.footer.contactPhone;
