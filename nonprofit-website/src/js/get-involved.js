@@ -1,28 +1,34 @@
-document.getElementById('site-title').textContent = STRINGS.siteTitle + " - Get Involved";
-document.getElementById('nav-logo').textContent = STRINGS.siteTitle.toUpperCase();
-document.getElementById('nav-home').textContent = STRINGS.nav.home;
-document.getElementById('nav-about').textContent = STRINGS.nav.about;
-document.getElementById('nav-get-involved').textContent = STRINGS.nav.getInvolved;
-document.getElementById('nav-partner').textContent = STRINGS.nav.partner;
+// Legacy string injection — only runs if elements exist
+(function() {
+    const setText = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text; };
+    const setHtml = (id, html) => { const el = document.getElementById(id); if (el) el.innerHTML = html; };
 
-document.getElementById('get-title').textContent = STRINGS.getInvolved.title;
-document.getElementById('get-intro').textContent = STRINGS.getInvolved.intro;
-document.getElementById('get-programs').innerHTML = STRINGS.getInvolved.programs.map(p =>
-    `<div class="program-card"><div class="program-title">${p.title}</div><p>${p.text}</p></div>`
-).join('');
-document.getElementById('get-video').textContent = STRINGS.getInvolved.video;
-document.getElementById('get-partners').innerHTML = STRINGS.getInvolved.partners.map(l =>
-    `<div class="partner-logo">${l}</div>`
-).join('');
+    setText('site-title', STRINGS.siteTitle + " - Get Involved");
+    setText('nav-logo', STRINGS.siteTitle.toUpperCase());
+    setText('nav-home', STRINGS.nav.home);
+    setText('nav-about', STRINGS.nav.about);
+    setText('nav-get-involved', STRINGS.nav.getInvolved);
+    setText('nav-partner', STRINGS.nav.partner);
 
-// Footer 1
-document.getElementById('footer-contact-title').textContent = STRINGS.footer.contactTitle;
-document.getElementById('footer-contact-email').textContent = STRINGS.footer.contactEmail;
-document.getElementById('footer-contact-phone').textContent = STRINGS.footer.contactPhone;
-document.getElementById('footer-quick-title').textContent = STRINGS.footer.quickLinksTitle;
-document.getElementById('footer-quick-links').innerHTML = STRINGS.footer.quickLinks.map(link =>
-    `<p><a href="${link.url}">${link.label}</a></p>`
-).join('');
-document.getElementById('footer-follow-title').textContent = STRINGS.footer.followTitle;
-document.getElementById('footer-follow-links').textContent = STRINGS.footer.followLinks;
-document.getElementById('footer-copyright').innerHTML = STRINGS.footer.copyright;
+    setText('get-title', STRINGS.getInvolved.title);
+    setText('get-intro', STRINGS.getInvolved.intro);
+    setHtml('get-programs', STRINGS.getInvolved.programs.map(p =>
+        `<div class="program-card"><div class="program-title">${p.title}</div><p>${p.text}</p></div>`
+    ).join(''));
+    setText('get-video', STRINGS.getInvolved.video);
+    setHtml('get-partners', STRINGS.getInvolved.partners.map(l =>
+        `<div class="partner-logo">${l}</div>`
+    ).join(''));
+
+    // Footer
+    setText('footer-contact-title', STRINGS.footer.contactTitle);
+    setText('footer-contact-email', STRINGS.footer.contactEmail);
+    setText('footer-contact-phone', STRINGS.footer.contactPhone);
+    setHtml('footer-quick-title', STRINGS.footer.quickLinksTitle);
+    setHtml('footer-quick-links', STRINGS.footer.quickLinks.map(link =>
+        `<p><a href="${link.url}">${link.label}</a></p>`
+    ).join(''));
+    setText('footer-follow-title', STRINGS.footer.followTitle);
+    setText('footer-follow-links', STRINGS.footer.followLinks);
+    setHtml('footer-copyright', STRINGS.footer.copyright);
+})();
