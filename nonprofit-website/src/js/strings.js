@@ -97,7 +97,7 @@ const STRINGS = {
 },
 partner: {
     title: "Partner with Us",
-    intro: "Join us in building a $10 million transformative community hub that will serve DuPage County for generations to come.",
+    intro: "Join us in building a $5 million transformative community hub that will serve DuPage County for generations to come.",
     donationOptions: [
         { title: "Donate via Zelle", text: "Send your donation directly through Zelle to <strong>give@harambeenow.org</strong>.", zelle: true },
         { title: "Corporate Partnership", text: "Partner with us for community impact and corporate social responsibility." }
