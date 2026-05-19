@@ -21,9 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (opt.zelle) {
                 extraHtml = `
                     <div style="margin-top: 1rem; text-align: center;">
-                        <a href="media/zelle-qr-code.pdf" target="_blank" class="download-btn" style="display: inline-block; margin-top: 0.5rem; font-size: 0.95rem; padding: 0.6rem 1.2rem;">
-                            <i class="fas fa-qrcode"></i> View QR Code
-                        </a>
+                        <img src="media/zelle-qr-code.png" alt="Zelle QR Code" style="max-width: 200px; border-radius: 8px; margin-top: 0.5rem;">
                     </div>`;
             }
             return `<div class="donation-card"><h3 style="color: #D4AF37;">${opt.title}</h3><p>${opt.text}</p>${extraHtml}</div>`;
