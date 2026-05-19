@@ -16,16 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('support-title').textContent = STRINGS.partner.waysToSupport.title;
 
         // Set donation options
-        document.getElementById('donation-options').innerHTML = STRINGS.partner.donationOptions.map(opt => {
-            let extraHtml = '';
-            if (opt.zelle) {
-                extraHtml = `
-                    <div style="margin-top: 1rem; text-align: center;">
-                        <img src="media/zelle-qr-code.png" alt="Zelle QR Code" style="max-width: 200px; border-radius: 8px; margin-top: 0.5rem;">
-                    </div>`;
-            }
-            return `<div class="donation-card"><h3 style="color: #D4AF37;">${opt.title}</h3><p>${opt.text}</p>${extraHtml}</div>`;
-        }).join('');
+        document.getElementById('donation-options').innerHTML = STRINGS.partner.donationOptions.map(opt =>
+            `<div class="donation-card"><h3 style="color: #D4AF37;">${opt.title}</h3><p>${opt.text}</p></div>`
+        ).join('');
 
         // Set support prompt text
         document.getElementById('support-prompt').textContent = STRINGS.partner.waysToSupport.prompt;
